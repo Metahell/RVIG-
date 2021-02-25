@@ -1172,6 +1172,12 @@ MonoBehaviour:
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
+--- !u!1 &1613818160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2886846235999106512, guid: 40d2a56d5d6b2f64a83aa8c80ec98bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2886846236223558648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1646517275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,6 +1569,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   la_main: La main gauche
+--- !u!114 &1983565377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983565375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b708bd7ea57c34fad06030d06f3b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catalogue: {fileID: 1613818160}
 --- !u!1 &1998162986
 GameObject:
   m_ObjectHideFlags: 0
