@@ -317,6 +317,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   la_main: La main droite
+  layers: []
+  names:
+  - Cabinet_01_snaps001
+  - Cabinet_02_snaps001
+  - ComputerDesk_01_snaps001
+  meubles:
+  - {fileID: 827954660}
+  - {fileID: 1633841279}
+  - {fileID: 1717491836}
 --- !u!1 &631447307
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +674,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &827954660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2888288196287351710, guid: 40d2a56d5d6b2f64a83aa8c80ec98bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2886846236223558648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832824305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1581749144712736, guid: e201a24a09e942042b93390d0444d728,
@@ -716,7 +731,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1242,6 +1257,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2886846236223558648}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1633841279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2888357334369643838, guid: 40d2a56d5d6b2f64a83aa8c80ec98bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2886846236223558648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1646517275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,6 +1361,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 481164, guid: ce816f2e6abb0504092c23ed9b970dfd,
     type: 3}
   m_PrefabInstance: {fileID: 272456419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1717491836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4739151381836351229, guid: 40d2a56d5d6b2f64a83aa8c80ec98bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2886846236223558648}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1792184171
 PrefabInstance:
@@ -1633,6 +1660,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   la_main: La main gauche
+  layers: []
+  names: []
+  meubles: []
 --- !u!114 &1983565377
 MonoBehaviour:
   m_ObjectHideFlags: 0
