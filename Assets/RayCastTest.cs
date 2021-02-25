@@ -21,7 +21,7 @@ public class RayCastTest : MonoBehaviour
         if (timer > ping) {
             if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
-                Debug.Log(la_main + " hit objet en " +hit.transform.position);
+                Debug.Log(la_main + " pointe sur l'objet " +hit.transform.gameObject.name);
         }
             timer = 0f;
         }
