@@ -18,7 +18,7 @@ public class Catalogue : MonoBehaviour
         {
             catalogue.SetActive(!catalogue.active);
         }
-        if (OVRInput.GetDown(OVRInput.Button.Any))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
             catalogue.SetActive(!catalogue.active);
         }
