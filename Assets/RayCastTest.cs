@@ -32,7 +32,7 @@ public class RayCastTest : MonoBehaviour
             timer = 0f;
         }
         timer += Time.deltaTime;
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && la_main == "La main droite")
+        if ((OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0)) && la_main == "La main droite")
         {
             if (Physics.Raycast(transform.position,transform.forward,out hit))
             {
@@ -41,7 +41,7 @@ public class RayCastTest : MonoBehaviour
                 foreach(string name in names)
                 {
                     if (name == hit.transform.gameObject.name) {
-                        meuble = Instantiate(meubles[index],transform.position+transform.forward,Quaternion.identity);
+                        meuble = Instantiate(meubles[index],transform.position+transform.forward,transform.rotation);
                         est_tenu = true;
                         break;
                     }
@@ -53,7 +53,7 @@ public class RayCastTest : MonoBehaviour
         {
             meuble.transform.position = transform.position + transform.forward;
         }
-        if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && la_main == "La main droite")
+        if ((OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonUp(0)) && la_main == "La main droite")
         {
             est_tenu = false;
         }
