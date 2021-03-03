@@ -5,8 +5,6 @@ using UnityEngine;
 public class RayCastTest : MonoBehaviour
 {
     public string la_main;
-    private float timer;
-    private float ping;
     public LayerMask[] layers;
     public string[] names;
     public GameObject[] meubles;
@@ -15,8 +13,6 @@ public class RayCastTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 0f;
-        ping = 2f;
         est_tenu = false;
     }
 
@@ -24,28 +20,30 @@ public class RayCastTest : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if (timer > ping) {
-            if (Physics.Raycast(transform.position, transform.forward, out hit))
-            {
-                Debug.Log(la_main + " pointe sur l'objet " +hit.transform.gameObject.name);
-        }
-            timer = 0f;
-        }
-        timer += Time.deltaTime;
         if ((OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0)) && la_main == "La main droite")
         {
-            if (Physics.Raycast(transform.position,transform.forward,out hit))
+            if (est_tenu && !meuble.GetComponent<Meuble>().collision)
             {
-                Debug.Log("bouton poussé, raycast a touché");
-                int index = 0;
-                foreach(string name in names)
+                est_tenu = false;
+
+                meuble.AddComponent<Rigidbody>();
+
+            }
+            else
+            {
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {
-                    if (name == hit.transform.gameObject.name) {
-                        meuble = Instantiate(meubles[index],transform.position+transform.forward*0.5f, Quaternion.identity);
-                        est_tenu = true;
-                        break;
+                    int index = 0;
+                    foreach (string name in names)
+                    {
+                        if (name == hit.transform.gameObject.name)
+                        {
+                            meuble = Instantiate(meubles[index], transform.position + transform.forward * 0.5f, Quaternion.identity);
+                            est_tenu = true;
+                            break;
+                        }
+                        index++;
                     }
-                    index++;
                 }
             }
         }
@@ -53,9 +51,7 @@ public class RayCastTest : MonoBehaviour
         {
             meuble.transform.position = transform.position + transform.forward;
         }
-        if ((OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonUp(0)) && la_main == "La main droite")
-        {
-            est_tenu = false;
-        }
     }
+    
+
 }

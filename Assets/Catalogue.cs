@@ -16,11 +16,11 @@ public class Catalogue : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            catalogue.SetActive(!catalogue.active);
+            catalogue.SetActive(!catalogue.activeInHierarchy);
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
-            catalogue.SetActive(!catalogue.active);
+            catalogue.SetActive(!catalogue.activeInHierarchy);
         }
     }
 }
