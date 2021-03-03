@@ -41,7 +41,7 @@ public class RayCastTest : MonoBehaviour
                 foreach(string name in names)
                 {
                     if (name == hit.transform.gameObject.name) {
-                        meuble = Instantiate(meubles[index],transform.position+transform.forward,transform.rotation);
+                        meuble = Instantiate(meubles[index],transform.position+transform.forward*0.5f, Quaternion.identity);
                         est_tenu = true;
                         break;
                     }
