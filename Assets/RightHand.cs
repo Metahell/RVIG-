@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class RayCastTest : MonoBehaviour
+public class RightHand : MonoBehaviour
 {
-    public LayerMask[] layers;
     public string[] names;
     public GameObject[] meubles;
     private GameObject meuble;
@@ -23,7 +22,7 @@ public class RayCastTest : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if ((OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0)))
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0))
         {
             if (est_tenu && meuble.GetComponent<Meuble>().can_place)
             {
@@ -40,6 +39,7 @@ public class RayCastTest : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {
+                    bool new_meuble = false;
                     int index = 0;
                     foreach (string name in names)
                     {
@@ -50,9 +50,22 @@ public class RayCastTest : MonoBehaviour
                             meuble.AddComponent<Rigidbody>().useGravity = false;
                             meuble.transform.parent = gameObject.transform;
                             est_tenu = true;
+                            new_meuble = true;
                             break;
                         }
                         index++;
+                    }
+                    if (!new_meuble)
+                    {
+                        if (hit.transform.gameObject.tag == "meuble")
+                        {
+                            meuble = hit.transform.gameObject;
+                            meuble.transform.position = transform.position + transform.forward * 0.5f;
+                            meuble.GetComponent<Rigidbody>().useGravity = false;
+                            meuble.transform.parent = transform;
+                            meuble.GetComponent<Collider>().isTrigger = true;
+                            est_tenu = true;
+                        }
                     }
                 }
             }
@@ -89,6 +102,15 @@ public class RayCastTest : MonoBehaviour
                 meuble.transform.position = transform.position + transform.forward * 0.2f;
             }
             meuble.transform.Rotate(0, rotation, 0);
+            if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))
+            {
+                Destroy(meuble);
+                est_tenu = false;
+            }
+        }
+        else
+        {
+            Clear();
         }
     }
     void Print(string s)
