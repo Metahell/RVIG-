@@ -106,6 +106,7 @@ public class RightHand : MonoBehaviour
             {
                 Destroy(meuble);
                 est_tenu = false;
+                controller.EnableRotation = true;
             }
         }
         else
