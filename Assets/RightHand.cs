@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class RightHand : MonoBehaviour
 {
-    public string[] names;
     public GameObject[] meubles;
     private GameObject meuble;
     private bool est_tenu;
@@ -42,12 +41,11 @@ public class RightHand : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {
                     bool new_meuble = false;
-                    int index = 0;
-                    foreach (string name in names)
+                    foreach (GameObject meuble_c in meubles)
                     {
-                        if (name == hit.transform.gameObject.name)
+                        if (meuble_c.name == hit.transform.gameObject.name)
                         {
-                            meuble = Instantiate(meubles[index], transform.position + transform.forward * 0.5f, Quaternion.identity);
+                            meuble = Instantiate(meuble_c, transform.position + transform.forward * 0.5f, Quaternion.identity);
 
                             meuble.AddComponent<Rigidbody>().useGravity = false;
                             meuble.transform.parent = gameObject.transform;
@@ -55,7 +53,6 @@ public class RightHand : MonoBehaviour
                             new_meuble = true;
                             break;
                         }
-                        index++;
                     }
                     if (!new_meuble)
                     {

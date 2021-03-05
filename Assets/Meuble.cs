@@ -5,6 +5,7 @@ using UnityEngine;
 public class Meuble : MonoBehaviour
 {
     public bool can_place;
+    public bool mural;
     private List<Color> colors = new List<Color>();
     // Start is called before the first frame update
     void Start()
