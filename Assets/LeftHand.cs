@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LeftHand : MonoBehaviour
 {
     public GameObject catalogue;
+    [SerializeField]
+    private Canvas Help;
     private bool vue_maquette;
     public OVRPlayerController controller;
     public Transform position_maquette;
     public Transform position_defaut;
     private bool off;
+    private bool helpbool;
     private float time;
     private float timer;
     // Start is called before the first frame update
@@ -19,6 +23,7 @@ public class LeftHand : MonoBehaviour
         timer = 0.1f;
         catalogue.SetActive(false);
         vue_maquette = false;
+        helpbool = false;
     }
 
     // Update is called once per frame
@@ -44,6 +49,20 @@ public class LeftHand : MonoBehaviour
                 controller.transform.localScale = new Vector3(1, 1, 1);
                 controller.transform.position = position_defaut.position;
                 vue_maquette = false;
+            }
+
+        }
+        if (OVRInput.GetDown(OVRInput.Button.Four))
+        {
+            if (!helpbool)
+            {
+                Help.enabled = true;
+                helpbool = true;
+            }
+            else
+            {
+                Help.enabled = false;
+                helpbool = false;
             }
 
         }
