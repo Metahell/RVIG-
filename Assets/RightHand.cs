@@ -106,6 +106,10 @@ public class RightHand : MonoBehaviour
             {
                 meuble.transform.Rotate(0, rotation, 0);
             }
+            if (meuble.name == "Classic_Window_03_snaps001(Clone)")
+            {
+                meuble.transform.Rotate(0, 180, 0);
+            }
             if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))
             {
                 Destroy(meuble);

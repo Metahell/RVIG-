@@ -30,6 +30,7 @@ public class Meuble : MonoBehaviour
                     Vector3 mur_position = col.ClosestPoint(transform.position);
                     transform.position = mur_position;
                     can_place = true;
+                    break;
                 }
                 else
                 {
