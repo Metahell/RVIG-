@@ -75,25 +75,25 @@ public class RightHand : MonoBehaviour
             lookat.y = meuble.transform.position.y;
             meuble.transform.LookAt(lookat);
             Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-            rotation -= secondaryAxis.x*2;
+            rotation -= secondaryAxis.x * 2;
             Clear();
             Print("test\n");
-            Print(secondaryAxis.ToString()+"\n");
-            Print(rotation.ToString()+"\n");
-            Print(OVRInput.Get(OVRInput.Button.Any).ToString()+"\n");
+            Print(secondaryAxis.ToString() + "\n");
+            Print(rotation.ToString() + "\n");
+            Print(OVRInput.Get(OVRInput.Button.Any).ToString() + "\n");
             controller.EnableRotation = false;
-            if ( OVRInput.Get(OVRInput.Button.Two))
+            if (OVRInput.Get(OVRInput.Button.Two))
             {
                 Print("B pressé\n");
                 meuble.transform.position += transform.forward / 50;
             }
-            
-            if ( OVRInput.Get(OVRInput.Button.One))
+
+            if (OVRInput.Get(OVRInput.Button.One))
             {
                 Print("A pressé\n");
                 meuble.transform.position -= transform.forward / 50;
             }
-            
+
             if ((meuble.transform.position - transform.position).magnitude > 1f)
             {
                 meuble.transform.position = transform.position + transform.forward;
@@ -102,7 +102,10 @@ public class RightHand : MonoBehaviour
             {
                 meuble.transform.position = transform.position + transform.forward * 0.2f;
             }
-            meuble.transform.Rotate(0, rotation, 0);
+            if (!meuble.GetComponent<Meuble>().mural)
+            {
+                meuble.transform.Rotate(0, rotation, 0);
+            }
             if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))
             {
                 Destroy(meuble);

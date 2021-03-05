@@ -20,26 +20,43 @@ public class Meuble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (mural)
+        {
+            Collider[] hit_colliders = Physics.OverlapSphere(transform.position, 0.5f);
+            foreach (Collider col in hit_colliders)
+            {
+                if (col.transform.gameObject.CompareTag("mur"))
+                {
+                    Vector3 mur_position = col.ClosestPoint(transform.position);
+                    transform.position = mur_position;
+                }
+            }
+        }
     }
     void OnTriggerEnter(Collider other)
     {
-        can_place = false;
-        Debug.Log("collision");
-        foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
+        if (!mural)
         {
-            material.color = Color.red;
+            can_place = false;
+            Debug.Log("collision");
+            foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
+            {
+                material.color = Color.red;
+            }
         }
     }
     void OnTriggerExit(Collider other)
     {
-        can_place = true;
-        Debug.Log("collision sortie");
-        int index = 0;
-        foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
+        if (!mural)
         {
-            material.color = colors[index];
-            index++;
+            can_place = true;
+            Debug.Log("collision sortie");
+            int index = 0;
+            foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
+            {
+                material.color = colors[index];
+                index++;
+            }
         }
     }
 }

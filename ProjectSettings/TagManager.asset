@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - meuble
+  - mur
   layers:
   - Default
   - TransparentFX
