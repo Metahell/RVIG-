@@ -27,7 +27,9 @@ public class RightHand : MonoBehaviour
             if (est_tenu && meuble.GetComponent<Meuble>().can_place)
             {
                 est_tenu = false;
-                meuble.GetComponent<Rigidbody>().useGravity = true;
+                Rigidbody rigi = meuble.GetComponent<Rigidbody>();
+                rigi.useGravity = true;
+                rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 meuble.transform.parent = null;
                 meuble.GetComponent<Collider>().isTrigger = false;
 
@@ -72,9 +74,11 @@ public class RightHand : MonoBehaviour
         }
         if (est_tenu)
         {
-            meuble.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+            Vector3 lookat = transform.position;
+            lookat.y = meuble.transform.position.y;
+            meuble.transform.LookAt(lookat);
             Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-            rotation += secondaryAxis.x;
+            rotation -= secondaryAxis.x*2;
             Clear();
             Print("test\n");
             Print(secondaryAxis.ToString()+"\n");
