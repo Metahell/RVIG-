@@ -10,7 +10,7 @@ public class Meuble : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        can_place = true;
+        can_place = !mural;
         foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
         {
             colors.Add(material.color);
@@ -29,6 +29,11 @@ public class Meuble : MonoBehaviour
                 {
                     Vector3 mur_position = col.ClosestPoint(transform.position);
                     transform.position = mur_position;
+                    can_place = true;
+                }
+                else
+                {
+                    can_place = false;
                 }
             }
         }
