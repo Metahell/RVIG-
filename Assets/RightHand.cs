@@ -93,7 +93,6 @@ public class RightHand : MonoBehaviour
                     if (col.transform.gameObject.CompareTag("mur"))
                     {
                         Vector3 mur_position = col.ClosestPoint(pour_mural.transform.position);
-                        Debug.Log(mur_position);
                         meuble.transform.parent = null;
                         meuble.transform.position = mur_position;
                         meuble.transform.rotation = col.transform.rotation;
