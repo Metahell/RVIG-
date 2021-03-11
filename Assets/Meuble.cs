@@ -16,10 +16,6 @@ public class Meuble : MonoBehaviour
     {
         can_place = !mural;
         sur_un_mur = false;
-        foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
-        {
-            colors.Add(material.color);
-        }
         if (has_child)
         {
             mesh = GetComponentInChildren<MeshRenderer>();
@@ -27,6 +23,10 @@ public class Meuble : MonoBehaviour
         else
         {
             mesh = GetComponent<MeshRenderer>();
+        }
+        foreach (Material material in mesh.materials)
+        {
+            colors.Add(material.color);
         }
     }
 

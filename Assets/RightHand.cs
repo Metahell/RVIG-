@@ -96,7 +96,7 @@ public class RightHand : MonoBehaviour
                         meuble.transform.parent = null;
                         meuble.transform.position = mur_position;
                         meuble.transform.rotation = col.transform.rotation;
-                        meuble.transform.Rotate(0, -90, 0);
+                        meuble.transform.Rotate(0, 90, 0);
                         meuble_script.can_place = true;
                         meuble_script.sur_un_mur = true;
                         break;
@@ -160,13 +160,6 @@ public class RightHand : MonoBehaviour
             if (!meuble.GetComponent<Meuble>().mural)
             {
                 meuble.transform.Rotate(0, rotation, 0);
-            }
-            if (meuble.name == "Classic_Window_03_snaps001(Clone)")
-            {
-                if (!meuble.GetComponent<Meuble>().sur_un_mur)
-                {
-                    meuble.transform.Rotate(0, 180, 0);
-                }
             }
             if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))
             {
