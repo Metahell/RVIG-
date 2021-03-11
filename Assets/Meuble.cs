@@ -9,6 +9,8 @@ public class Meuble : MonoBehaviour
     public bool sur_un_mur;
     private List<Color> colors = new List<Color>();
     private Transform pour_mural;
+    public bool has_child;
+    private MeshRenderer mesh;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,14 @@ public class Meuble : MonoBehaviour
         foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
         {
             colors.Add(material.color);
+        }
+        if (has_child)
+        {
+            mesh = GetComponentInChildren<MeshRenderer>();
+        }
+        else
+        {
+            mesh = GetComponent<MeshRenderer>();
         }
     }
 
@@ -30,7 +40,8 @@ public class Meuble : MonoBehaviour
         {
             can_place = false;
             Debug.Log("collision");
-            foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
+
+            foreach (Material material in mesh.materials)
             {
                 material.color = Color.red;
             }
@@ -43,7 +54,7 @@ public class Meuble : MonoBehaviour
             can_place = true;
             Debug.Log("collision sortie");
             int index = 0;
-            foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
+            foreach (Material material in mesh.materials)
             {
                 material.color = colors[index];
                 index++;
