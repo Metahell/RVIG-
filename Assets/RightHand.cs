@@ -46,7 +46,7 @@ public class RightHand : MonoBehaviour
             }
             else
             {
-                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                if (Physics.Raycast(transform.position, transform.forward, out hit) && !est_tenu)
                 {
                     Debug.Log(hit.transform.gameObject.name);
                     bool new_meuble = false;
