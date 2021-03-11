@@ -10,9 +10,12 @@ public class RightHand : MonoBehaviour
     public Text text;
     public OVRPlayerController controller;
     private float rotation;
+    public GameObject pour_mural;
     // Start is called before the first frame update
     void Start()
     {
+        pour_mural = Instantiate(new GameObject("pour_mural"), transform.position + transform.forward * 0.5f, Quaternion.identity);
+        pour_mural.transform.parent = transform;
         est_tenu = false;
         rotation = 0;
     }
@@ -27,7 +30,12 @@ public class RightHand : MonoBehaviour
             {
                 est_tenu = false;
                 Rigidbody rigi = meuble.GetComponent<Rigidbody>();
-                rigi.useGravity = true;
+
+                if (!meuble.GetComponent<Meuble>().mural)
+                {
+                    rigi.useGravity = true;
+                    rigi.isKinematic = false;
+                }
                 rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 meuble.transform.parent = null;
                 meuble.GetComponent<Collider>().isTrigger = false;
@@ -40,6 +48,7 @@ public class RightHand : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {
+                    Debug.Log(hit.transform.gameObject.name);
                     bool new_meuble = false;
                     foreach (GameObject meuble_c in meubles)
                     {
@@ -47,8 +56,11 @@ public class RightHand : MonoBehaviour
                         {
                             meuble = Instantiate(meuble_c, transform.position + transform.forward * 0.5f, Quaternion.identity);
 
-                            meuble.AddComponent<Rigidbody>().useGravity = false;
-                            meuble.transform.parent = gameObject.transform;
+                            Rigidbody rigi = meuble.AddComponent<Rigidbody>();
+                            rigi.useGravity = false;
+                            rigi.isKinematic = true;
+                            rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                            meuble.transform.parent = transform;
                             est_tenu = true;
                             new_meuble = true;
                             break;
@@ -71,9 +83,41 @@ public class RightHand : MonoBehaviour
         }
         if (est_tenu)
         {
+            Meuble meuble_script = meuble.GetComponent<Meuble>();
+            meuble_script.sur_un_mur = false;
+            if (meuble_script.mural)
+            {
+                Collider[] hit_colliders = Physics.OverlapSphere(pour_mural.transform.position, 0.2f);
+                foreach (Collider col in hit_colliders)
+                {
+                    if (col.transform.gameObject.CompareTag("mur"))
+                    {
+                        Vector3 mur_position = col.ClosestPoint(pour_mural.transform.position);
+                        Debug.Log(mur_position);
+                        meuble.transform.parent = null;
+                        meuble.transform.position = mur_position;
+                        meuble.transform.rotation = col.transform.rotation;
+                        meuble.transform.Rotate(0, 90, 0);
+                        meuble_script.can_place = true;
+                        meuble_script.sur_un_mur = true;
+                        break;
+                    }
+                    else
+                    {
+                        meuble_script.can_place = false;
+                        meuble_script.sur_un_mur = false;
+                        meuble.transform.parent = transform;
+                        meuble.transform.position = pour_mural.transform.position;
+                    }
+                }
+            }
+
             Vector3 lookat = transform.position;
             lookat.y = meuble.transform.position.y;
-            meuble.transform.LookAt(lookat);
+            if (!meuble.GetComponent<Meuble>().sur_un_mur)
+            {
+                meuble.transform.LookAt(lookat);
+            }
             Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
             rotation -= secondaryAxis.x * 2;
             Clear();
@@ -85,22 +129,34 @@ public class RightHand : MonoBehaviour
             if (OVRInput.Get(OVRInput.Button.Two))
             {
                 Print("B pressé\n");
-                meuble.transform.position += transform.forward / 50;
+                if (!meuble.GetComponent<Meuble>().sur_un_mur)
+                {
+                    meuble.transform.position += transform.forward / 50;
+                }
             }
 
             if (OVRInput.Get(OVRInput.Button.One))
             {
                 Print("A pressé\n");
-                meuble.transform.position -= transform.forward / 50;
+                if (!meuble.GetComponent<Meuble>().sur_un_mur)
+                {
+                    meuble.transform.position -= transform.forward / 50;
+                }
             }
 
             if ((meuble.transform.position - transform.position).magnitude > 1f)
             {
-                meuble.transform.position = transform.position + transform.forward;
+                if (!meuble.GetComponent<Meuble>().sur_un_mur)
+                {
+                    meuble.transform.position = transform.position + transform.forward;
+                }
             }
             if ((meuble.transform.position - transform.position).magnitude < 0.2f)
             {
-                meuble.transform.position = transform.position + transform.forward * 0.2f;
+                if (!meuble.GetComponent<Meuble>().sur_un_mur)
+                {
+                    meuble.transform.position = transform.position + transform.forward * 0.2f;
+                }
             }
             if (!meuble.GetComponent<Meuble>().mural)
             {
@@ -108,7 +164,10 @@ public class RightHand : MonoBehaviour
             }
             if (meuble.name == "Classic_Window_03_snaps001(Clone)")
             {
-                meuble.transform.Rotate(0, 180, 0);
+                if (!meuble.GetComponent<Meuble>().sur_un_mur)
+                {
+                    meuble.transform.Rotate(0, 180, 0);
+                }
             }
             if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))
             {
