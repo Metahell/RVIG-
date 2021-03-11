@@ -6,6 +6,7 @@ TagManager:
   tags:
   - meuble
   - mur
+  - sol
   layers:
   - Default
   - TransparentFX
