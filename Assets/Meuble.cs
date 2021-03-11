@@ -6,11 +6,14 @@ public class Meuble : MonoBehaviour
 {
     public bool can_place;
     public bool mural;
+    public bool sur_un_mur;
     private List<Color> colors = new List<Color>();
+    private Transform pour_mural;
     // Start is called before the first frame update
     void Start()
     {
         can_place = !mural;
+        sur_un_mur = false;
         foreach (Material material in gameObject.GetComponent<MeshRenderer>().materials)
         {
             colors.Add(material.color);
@@ -20,24 +23,6 @@ public class Meuble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mural)
-        {
-            Collider[] hit_colliders = Physics.OverlapSphere(transform.position, 0.5f);
-            foreach (Collider col in hit_colliders)
-            {
-                if (col.transform.gameObject.CompareTag("mur"))
-                {
-                    Vector3 mur_position = col.ClosestPoint(transform.position);
-                    transform.position = mur_position;
-                    can_place = true;
-                    break;
-                }
-                else
-                {
-                    can_place = false;
-                }
-            }
-        }
     }
     void OnTriggerEnter(Collider other)
     {
