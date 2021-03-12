@@ -42,12 +42,14 @@ public class LeftHand : MonoBehaviour
             {
                 controller.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 controller.transform.position = position_maquette.position;
+                controller.transform.rotation = position_maquette.rotation;
                 vue_maquette = true;
             }
             else
             {
                 controller.transform.localScale = new Vector3(1, 1, 1);
                 controller.transform.position = position_defaut.position;
+                controller.transform.rotation = position_defaut.rotation;
                 vue_maquette = false;
             }
 

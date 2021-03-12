@@ -36,6 +36,7 @@ public class RightHand : MonoBehaviour
                     rigi.useGravity = true;
                     rigi.isKinematic = false;
                 }
+                meuble.layer = 0;
                 rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 meuble.transform.parent = null;
                 meuble.GetComponent<Collider>().isTrigger = false;
@@ -63,6 +64,10 @@ public class RightHand : MonoBehaviour
                             meuble.transform.parent = transform;
                             est_tenu = true;
                             new_meuble = true;
+                            if (meuble.GetComponent<Meuble>().mural)
+                            {
+                                meuble.layer = 2;
+                            }
                             break;
                         }
                     }
@@ -76,6 +81,10 @@ public class RightHand : MonoBehaviour
                             meuble.transform.parent = transform;
                             meuble.GetComponent<Collider>().isTrigger = true;
                             est_tenu = true;
+                            if (meuble.GetComponent<Meuble>().mural)
+                            {
+                                meuble.layer = 2;
+                            }
                         }
                     }
                 }
@@ -93,13 +102,42 @@ public class RightHand : MonoBehaviour
                     if (col.transform.gameObject.CompareTag("mur"))
                     {
                         Vector3 mur_position = col.ClosestPoint(pour_mural.transform.position);
-                        meuble.transform.parent = null;
-                        meuble.transform.position = mur_position;
-                        meuble.transform.rotation = col.transform.rotation;
-                        meuble.transform.Rotate(0, 90, 0);
-                        meuble_script.can_place = true;
-                        meuble_script.sur_un_mur = true;
-                        break;
+                        if (Physics.Raycast(pour_mural.transform.position, mur_position - pour_mural.transform.position, out hit))
+                        {
+                            if (hit.transform.gameObject.CompareTag("mur"))
+                            {
+                                if (hit.normal == Vector3.up)
+                                {
+                                    break;
+                                }
+                                meuble.transform.parent = null;
+                                meuble.transform.position = hit.point;
+                                Quaternion new_rotation = new Quaternion();
+                                new_rotation.SetLookRotation(hit.normal, Vector3.up);
+                                meuble.transform.rotation = new_rotation;
+                                meuble_script.can_place = true;
+                                meuble_script.sur_un_mur = true;
+                                break;
+
+                            }
+                            else
+                            {
+                                meuble_script.can_place = false;
+                                meuble_script.sur_un_mur = false;
+                                meuble.transform.parent = transform;
+                                meuble.transform.position = pour_mural.transform.position;
+
+                            }
+                        }
+                        else
+                        {
+                            meuble_script.can_place = false;
+                            meuble_script.sur_un_mur = false;
+                            meuble.transform.parent = transform;
+                            meuble.transform.position = pour_mural.transform.position;
+
+                        }
+
                     }
                     else
                     {
@@ -124,9 +162,13 @@ public class RightHand : MonoBehaviour
             Print(secondaryAxis.ToString() + "\n");
             Print(rotation.ToString() + "\n");
             Print(OVRInput.Get(OVRInput.Button.Any).ToString() + "\n");
-            controller.EnableRotation = false;
+            if (!meuble.GetComponent<Meuble>().mural)
+            {
+                controller.EnableRotation = false;
+            }
             if (OVRInput.Get(OVRInput.Button.Two))
             {
+                pour_mural.transform.position += transform.forward / 50;
                 Print("B pressé\n");
                 if (!meuble.GetComponent<Meuble>().sur_un_mur)
                 {
@@ -136,6 +178,7 @@ public class RightHand : MonoBehaviour
 
             if (OVRInput.Get(OVRInput.Button.One))
             {
+                pour_mural.transform.position -= transform.forward / 50;
                 Print("A pressé\n");
                 if (!meuble.GetComponent<Meuble>().sur_un_mur)
                 {
@@ -143,10 +186,21 @@ public class RightHand : MonoBehaviour
                 }
             }
 
+            if ((pour_mural.transform.position - transform.position).magnitude > 1f)
+            {
+                pour_mural.transform.position = transform.position + transform.forward;
+            }
+
+            if ((pour_mural.transform.position - transform.position).magnitude < 0.2f)
+            {
+                pour_mural.transform.position = transform.position + transform.forward * 0.2f;
+            }
+
             if ((meuble.transform.position - transform.position).magnitude > 1f)
             {
                 if (!meuble.GetComponent<Meuble>().sur_un_mur)
                 {
+
                     meuble.transform.position = transform.position + transform.forward;
                 }
             }
