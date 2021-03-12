@@ -1127,6 +1127,7 @@ MonoBehaviour:
   text: {fileID: 1578511492}
   righthand: {fileID: 651984857}
   wall: {fileID: 4531268733847029527, guid: c73151b2c863d094393f47d50c325553, type: 3}
+  wallIndic: {fileID: 1720321481462350, guid: 062941fca5d7f504994db8fa946d83f9, type: 3}
   controller: {fileID: 1932705677}
 --- !u!114 &651984859
 MonoBehaviour:

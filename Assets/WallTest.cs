@@ -11,6 +11,7 @@ public class WallTest : MonoBehaviour
     private RightHand righthand;
     [SerializeField]
     private Mur wall;
+    [SerializeField]
     private GameObject wallIndic;
     private float rotation;
     private float timeHeld;
@@ -19,7 +20,6 @@ public class WallTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResetIndic();
     }
 
     // Update is called once per frame
@@ -95,7 +95,7 @@ public class WallTest : MonoBehaviour
                 {
                     ontarget = false;
                     wallIndic.GetComponent<Renderer>().enabled = false;
-                    ResetIndic();
+                    Destroy(wallIndic);
                 }
                 if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
                 {
@@ -110,7 +110,7 @@ public class WallTest : MonoBehaviour
     }
         bool canPlaceWall(Vector3 hitpos)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(hitpos, 0.05f);
+            Collider[] hitColliders = Physics.OverlapSphere(hitpos, 0.075f);
             foreach (var hitCollider in hitColliders)
             {
                 if (hitCollider.CompareTag("mur"))
