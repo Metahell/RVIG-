@@ -70,11 +70,8 @@ public class WallTest : MonoBehaviour
                     if (!ontarget)
                     {
                         ontarget = true;
-                        if (wallIndic != null)
-                        {
-                            wallIndic.GetComponent<Renderer>().enabled = true;
-                        }
-                        else wallIndic = Instantiate(wallIndic, hit.point, Quaternion.Euler(0, rotation, 0));
+                        wallIndic.GetComponent<Renderer>().enabled = true;
+                        wallIndic = Instantiate(wallIndic, hit.point, Quaternion.Euler(0, rotation, 0));
                     }
                     Vector3 adjustpos = hit.point;
                     if (canPlaceWall(adjustpos))
