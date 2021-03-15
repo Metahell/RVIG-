@@ -10,22 +10,23 @@ public class WallTest : MonoBehaviour
     [SerializeField]
     private RightHand righthand;
     [SerializeField]
-    private Mur wall;
+    private GameObject wall;
     [SerializeField]
     private GameObject wallIndic;
-    private float rotation;
+    private GameObject indic;
+    private float rotation=0;
     private float timeHeld;
-    private bool ontarget=false;
+    private bool ontarget = false;
     public OVRPlayerController controller;
     // Start is called before the first frame update
     void Start()
     {
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        Print(wallIndic.transform.position.ToString());
         RaycastHit hit;
         Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
@@ -35,67 +36,48 @@ public class WallTest : MonoBehaviour
                 wallmode = false;
                 controller.EnableRotation = true;
                 righthand.enabled = true;
-                Print("Mode mur désactivé");
             }
             else
             {
                 wallmode = true;
                 controller.EnableRotation = false;
                 righthand.enabled = false;
-                Print("Mode mur activé");
             }
         }
         if (wallmode)
         {
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick))
-            {
-                if (secondaryAxis.x > 0.5)
-                {
-                    rotation += 90;
-                }
-                else if (secondaryAxis.x < 0.5)
-                {
-                    rotation -= 90;
-                }
-            }
+            rotation -= secondaryAxis.x * 2;
             if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
                 if (hit.transform.gameObject.tag == "sol")
                 {
-                    if (ontarget)
-                    {
-                        wallIndic.transform.position = hit.point;
-                        wallIndic.transform.rotation = Quaternion.Euler(0, rotation, 0);
-                    }
                     if (!ontarget)
                     {
                         ontarget = true;
-                        wallIndic.GetComponent<Renderer>().enabled = true;
-                        wallIndic = Instantiate(wallIndic, hit.point, Quaternion.Euler(0, rotation, 0));
+                        indic = Instantiate(wallIndic, hit.point, Quaternion.identity);
+                        Rigidbody rigi = indic.AddComponent<Rigidbody>();
+                        rigi.useGravity = false;
+                        rigi.isKinematic = true;
+                        rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                    }
+                    if (ontarget)
+                    {
+                        indic.transform.position = hit.point;
+                        indic.transform.rotation = Quaternion.Euler(0, rotation, 0);
                     }
                     Vector3 adjustpos = hit.point;
-                    if (canPlaceWall(adjustpos))
-                    {
-                        wallIndic.GetComponent<Mur>().canplace();
-                    }
-                    else
-                    {
-                        wallIndic.GetComponent<Mur>().cantplace();
-                    }
                     if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                     {
-                        if (canPlaceWall(adjustpos))
+                        if (indic.GetComponent<Mur>().can_place)
                         {
-                            Instantiate(wall.gameObject, adjustpos, Quaternion.Euler(0, rotation, 0));
-                            Print("CurrentPos" + adjustpos.ToString());
+                            Instantiate(wall, adjustpos, Quaternion.Euler(0, rotation, 0));
                         }
                     }
                 }
                 else
                 {
                     ontarget = false;
-                    wallIndic.GetComponent<Renderer>().enabled = false;
-                    Destroy(wallIndic);
+                    indic.GetComponent<Renderer>().enabled = false;
                 }
                 if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
                 {
@@ -107,33 +89,28 @@ public class WallTest : MonoBehaviour
                 }
             }
         }
-    }
-        bool canPlaceWall(Vector3 hitpos)
+        else
         {
-            Collider[] hitColliders = Physics.OverlapSphere(hitpos, 0.075f);
-            foreach (var hitCollider in hitColliders)
+            if (indic != null)
             {
-                if (hitCollider.CompareTag("mur"))
-                {
-                    return false;
-                }
+                Destroy(indic);
+            }
+        }
+    }
+    bool canPlaceWall(Vector3 hitpos)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(hitpos, 0.01f);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("mur"))
+            {
+                return false;
+            }
             if (hitCollider.CompareTag("meuble"))
             {
                 return false;
             }
-            }
-            return true;
         }
-    void ResetIndic()
-    {
-        wallIndic = wall.gameObject;
-        wallIndic.GetComponent<Mur>().newmur = false;
-        wallIndic.GetComponent<Collider>().isTrigger = true;
-        wallIndic.tag = "Default";
-        wallIndic.layer = 2;
+        return true;
     }
-        void Print(string s)
-        {
-            text.text = s;
-        }
-    }
+}

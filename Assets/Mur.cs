@@ -6,44 +6,52 @@ public class Mur : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool newmur;
-    public bool can_place;
-    private List<Color> colors = new List<Color>();
-    public bool has_child;
+    public bool can_place=true;
     private MeshRenderer mesh;
     // Start is called before the first frame update
     void Start()
     {
-        if (has_child)
-        {
-            mesh = GetComponentInChildren<MeshRenderer>();
-        }
-        else
-        {
-            mesh = GetComponent<MeshRenderer>();
-        }
-        foreach (Material material in mesh.materials)
-        {
-            colors.Add(material.color);
-        }
+        canplace();
     }
-
+    private void Awake()
+    {
+        canplace();
+    }
     // Update is called once per frame
     void Update()
     {
-
+        if (can_place)
+        {
+            canplace();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        cantplace();
+        can_place = false;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        cantplace();
+        can_place = false;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        canplace();
+        can_place = true;
     }
     public void canplace()
     {
         foreach (Material material in mesh.materials)
         {
-            material.color = Color.red;
+            material.color = Color.green;
         }
     }
     public void cantplace()
     {
         foreach (Material material in mesh.materials)
         {
-            material.color = Color.green;
+            material.color = Color.red;
         }
     }
 }
