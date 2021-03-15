@@ -39,18 +39,19 @@ public class Mur : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        cantplace();
-        can_place = false;
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        cantplace();
-        can_place = false;
+        if (!other.CompareTag("sol"))
+        {
+            cantplace();
+            can_place = false;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        canplace();
-        can_place = true;
+        if (!other.CompareTag("sol"))
+        {
+            canplace();
+            can_place = true;
+        }
     }
     
 }
