@@ -11,11 +11,23 @@ public class Mur : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mesh = GetComponent<MeshRenderer>();
         canplace();
     }
-    private void Awake()
+
+    public void canplace()
     {
-        canplace();
+        foreach (Material material in mesh.materials)
+        {
+            material.color = Color.green;
+        }
+    }
+    public void cantplace()
+    {
+        foreach (Material material in mesh.materials)
+        {
+            material.color = Color.red;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -40,18 +52,5 @@ public class Mur : MonoBehaviour
         canplace();
         can_place = true;
     }
-    public void canplace()
-    {
-        foreach (Material material in mesh.materials)
-        {
-            material.color = Color.green;
-        }
-    }
-    public void cantplace()
-    {
-        foreach (Material material in mesh.materials)
-        {
-            material.color = Color.red;
-        }
-    }
+    
 }
