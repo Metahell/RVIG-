@@ -96,48 +96,17 @@ public class RightHand : MonoBehaviour
             meuble_script.sur_un_mur = false;
             if (meuble_script.mural)
             {
-                Collider[] hit_colliders = Physics.OverlapSphere(pour_mural.transform.position, 0.2f);
-                foreach (Collider col in hit_colliders)
+                if (Physics.Raycast(transform.position,transform.forward,out hit))
                 {
-                    if (col.transform.gameObject.CompareTag("mur"))
+                    if (hit.transform.gameObject.CompareTag("mur"))
                     {
-                        Vector3 mur_position = col.ClosestPoint(pour_mural.transform.position);
-                        if (Physics.Raycast(pour_mural.transform.position, mur_position - pour_mural.transform.position, out hit))
-                        {
-                            if (hit.transform.gameObject.CompareTag("mur"))
-                            {
-                                if (hit.normal == Vector3.up)
-                                {
-                                    break;
-                                }
-                                meuble.transform.parent = null;
-                                meuble.transform.position = hit.point;
-                                Quaternion new_rotation = new Quaternion();
-                                new_rotation.SetLookRotation(hit.normal, Vector3.up);
-                                meuble.transform.rotation = new_rotation;
-                                meuble_script.can_place = true;
-                                meuble_script.sur_un_mur = true;
-                                break;
-
-                            }
-                            else
-                            {
-                                meuble_script.can_place = false;
-                                meuble_script.sur_un_mur = false;
-                                meuble.transform.parent = transform;
-                                meuble.transform.position = pour_mural.transform.position;
-
-                            }
-                        }
-                        else
-                        {
-                            meuble_script.can_place = false;
-                            meuble_script.sur_un_mur = false;
-                            meuble.transform.parent = transform;
-                            meuble.transform.position = pour_mural.transform.position;
-
-                        }
-
+                        meuble.transform.parent = null;
+                        meuble.transform.position = hit.point;
+                        Quaternion new_rotation = new Quaternion();
+                        new_rotation.SetLookRotation(hit.normal, Vector3.up);
+                        meuble.transform.rotation = new_rotation;
+                        meuble_script.can_place = true;
+                        meuble_script.sur_un_mur = true;
                     }
                     else
                     {
@@ -147,6 +116,61 @@ public class RightHand : MonoBehaviour
                         meuble.transform.position = pour_mural.transform.position;
                     }
                 }
+
+
+
+
+                //Collider[] hit_colliders = Physics.OverlapSphere(pour_mural.transform.position, 0.2f);
+                //foreach (Collider col in hit_colliders)
+                //{
+                //    if (col.transform.gameObject.CompareTag("mur"))
+                //    {
+                //        Vector3 mur_position = col.ClosestPoint(pour_mural.transform.position);
+                //        if (Physics.Raycast(pour_mural.transform.position, mur_position - pour_mural.transform.position, out hit))
+                //        {
+                //            if (hit.transform.gameObject.CompareTag("mur"))
+                //            {
+                //                if (hit.normal == Vector3.up)
+                //                {
+                //                    break;
+                //                }
+                //                meuble.transform.parent = null;
+                //                meuble.transform.position = hit.point;
+                //                Quaternion new_rotation = new Quaternion();
+                //                new_rotation.SetLookRotation(hit.normal, Vector3.up);
+                //                meuble.transform.rotation = new_rotation;
+                //                meuble_script.can_place = true;
+                //                meuble_script.sur_un_mur = true;
+                //                break;
+
+                //            }
+                //            else
+                //            {
+                //                meuble_script.can_place = false;
+                //                meuble_script.sur_un_mur = false;
+                //                meuble.transform.parent = transform;
+                //                meuble.transform.position = pour_mural.transform.position;
+
+                //            }
+                //        }
+                //        else
+                //        {
+                //            meuble_script.can_place = false;
+                //            meuble_script.sur_un_mur = false;
+                //            meuble.transform.parent = transform;
+                //            meuble.transform.position = pour_mural.transform.position;
+
+                //        }
+
+                //    }
+                //    else
+                //    {
+                //        meuble_script.can_place = false;
+                //        meuble_script.sur_un_mur = false;
+                //        meuble.transform.parent = transform;
+                //        meuble.transform.position = pour_mural.transform.position;
+                //    }
+                //}
             }
 
             Vector3 lookat = transform.position;

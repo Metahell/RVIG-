@@ -25,10 +25,12 @@ public class WallTest : MonoBehaviour
     private float timeHeld;
     private bool ontarget = false;
     public OVRPlayerController controller;
+    private float[] zPos = {14.649f,14.89f,15.131f};
+    private float[] xPos = {7.944f, 8.185f, 8.426f};
+    private Vector3 n_pos;
     // Start is called before the first frame update
     void Start()
     {
-       
     }
 
     // Update is called once per frame
@@ -82,7 +84,8 @@ public class WallTest : MonoBehaviour
                     if (!ontarget||indic==null)
                     {
                         ontarget = true;
-                        indic = Instantiate(wallIndic, hit.point, Quaternion.identity);
+                        n_pos = new Vector3(getClosest(xPos, hit.point.x), hit.point.y, getClosest(zPos, hit.point.z));
+                        indic = Instantiate(wallIndic, n_pos, Quaternion.identity);
                         Rigidbody rigi = indic.AddComponent<Rigidbody>();
                         rigi.useGravity = false;
                         rigi.isKinematic = true;
@@ -94,17 +97,19 @@ public class WallTest : MonoBehaviour
                         {
                             change = false;
                             Destroy(indic);
-                            indic= Instantiate(wallIndic, hit.point, Quaternion.identity);
+                            n_pos = new Vector3(getClosest(xPos, hit.point.x), hit.point.y, getClosest(zPos, hit.point.z));
+                            indic = Instantiate(wallIndic, n_pos, Quaternion.identity);
                         }
-                        indic.transform.position = hit.point;
+                        n_pos = new Vector3(getClosest(xPos, hit.point.x), hit.point.y, getClosest(zPos, hit.point.z));
+                        indic.transform.position = n_pos;
                         indic.transform.rotation = Quaternion.Euler(0, rotation, 0);
                     }
-                    Vector3 adjustpos = hit.point;
                     if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                     {
                         if (indic.GetComponent<Mur>().can_place)
                         {
-                            Instantiate(wall, adjustpos, Quaternion.Euler(0, rotation, 0));
+                            n_pos = new Vector3(getClosest(xPos, hit.point.x), hit.point.y, getClosest(zPos, hit.point.z));
+                            Instantiate(wall, n_pos, Quaternion.Euler(0, rotation, 0));
                         }
                     }
                 }
@@ -134,10 +139,7 @@ public class WallTest : MonoBehaviour
             }
         }
     }
-    Vector3 PlaceWall(Vector3 hitpos)
-    {
-        return hitpos;
-    }
+  
     private void Incr(int type)
     {
         if (i == max&&type==0)
@@ -157,5 +159,17 @@ public class WallTest : MonoBehaviour
             i--;
         }
         change = true;
+    }
+
+    private float getClosest(float[] positions,float position)
+    {
+        foreach (float c_pos in positions)
+        {
+            if (position < c_pos)
+            {
+                return c_pos;
+            }
+        }
+        return positions[2];
     }
 }

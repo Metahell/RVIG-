@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3029,8 +3029,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227605672}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.01099968, y: 3.2, z: 0.5080004}
-  m_LocalScale: {x: 0.020666597, y: 8, z: 1.0229}
+  m_LocalPosition: {x: 0.0034, y: 3.2, z: 0.5080004}
+  m_LocalScale: {x: 0.020666597, y: 8, z: 1.0076598}
   m_Children: []
   m_Father: {fileID: 1998162987}
   m_RootOrder: 2
@@ -3740,8 +3740,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646517275}
   m_LocalRotation: {x: 0, y: 0, z: -0, w: -1}
-  m_LocalPosition: {x: -0.48969984, y: 3.2, z: 0}
-  m_LocalScale: {x: 0.0206666, y: 8, z: 1}
+  m_LocalPosition: {x: -0.48969984, y: 3.2, z: 0.0048}
+  m_LocalScale: {x: 0.0206666, y: 8, z: 0.9903445}
   m_Children: []
   m_Father: {fileID: 1998162987}
   m_RootOrder: 1
@@ -4521,8 +4521,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956919106}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.5109997, y: 3.2, z: 0}
-  m_LocalScale: {x: 0.0206666, y: 8, z: 1}
+  m_LocalPosition: {x: 0.4991, y: 3.2, z: 0.0029}
+  m_LocalScale: {x: 0.0206666, y: 8, z: 0.99427134}
   m_Children: []
   m_Father: {fileID: 1998162987}
   m_RootOrder: 0
@@ -4802,8 +4802,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039829902}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0.01099968, y: 3.2, z: -0.4949999}
-  m_LocalScale: {x: 0.020666597, y: 8, z: 1.0229}
+  m_LocalPosition: {x: -0, y: 3.2, z: -0.4846}
+  m_LocalScale: {x: 0.020666597, y: 8, z: 1.0008477}
   m_Children: []
   m_Father: {fileID: 1998162987}
   m_RootOrder: 3
