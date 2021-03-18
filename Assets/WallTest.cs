@@ -118,7 +118,10 @@ public class WallTest : MonoBehaviour
                     if (hit.transform.gameObject.tag == "mur")
                     {
                         GameObject mur = hit.transform.gameObject;
-                        Destroy(mur);
+                        if (mur.GetComponent<Mur>().newmur)
+                        {
+                            Destroy(mur);
+                        }
                     }
                 }
             }
@@ -131,21 +134,9 @@ public class WallTest : MonoBehaviour
             }
         }
     }
-    bool canPlaceWall(Vector3 hitpos)
+    Vector3 PlaceWall(Vector3 hitpos)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(hitpos, 0.01f);
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("mur"))
-            {
-                return false;
-            }
-            if (hitCollider.CompareTag("meuble"))
-            {
-                return false;
-            }
-        }
-        return true;
+        return hitpos;
     }
     private void Incr(int type)
     {

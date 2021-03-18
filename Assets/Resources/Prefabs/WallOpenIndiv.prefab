@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -4456720779370308325}
   - component: {fileID: -8578235305066075331}
   - component: {fileID: 2592303187407750606}
+  - component: {fileID: 6301570901177147882}
   m_Layer: 2
   m_Name: WallOpenIndiv
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1159202960673004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.08, y: 0.09, z: 0.08}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newmur: 0
+  isindic: 1
   can_place: 1
 --- !u!54 &-8578235305066075331
 Rigidbody:
@@ -141,3 +143,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31250048, y: 3, z: 3.0000036}
   m_Center: {x: 0.00000024586916, y: 1.5, z: 1.5000001}
+--- !u!114 &6301570901177147882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159202960673004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7d3eb659d3b8245a81dfe27906c2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newmur: 1
+  isindic: 0
+  can_place: 1

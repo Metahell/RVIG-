@@ -5,14 +5,18 @@ using UnityEngine;
 public class Mur : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool newmur;
+    public bool newmur=true;
+    public bool isindic = false;
     public bool can_place=true;
     private MeshRenderer mesh;
     // Start is called before the first frame update
     void Start()
     {
-        mesh = GetComponent<MeshRenderer>();
-        canplace();
+        if (isindic)
+        {
+            mesh = GetComponent<MeshRenderer>();
+            canplace();
+        }
     }
 
     public void canplace()
@@ -32,25 +36,35 @@ public class Mur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (can_place)
+        if (isindic)
         {
-            canplace();
+            if (can_place)
+            {
+                canplace();
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("sol"))
+        if (isindic)
         {
-            cantplace();
-            can_place = false;
+            if (!other.CompareTag("sol"))
+            {
+                cantplace();
+                can_place = false;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("sol"))
+        if (isindic)
         {
-            canplace();
-            can_place = true;
+            if (!other.CompareTag("sol"))
+            {
+                canplace();
+                can_place = true;
+            }
+
         }
     }
     

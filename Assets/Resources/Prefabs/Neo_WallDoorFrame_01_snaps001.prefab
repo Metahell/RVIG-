@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 23692197681522694}
   - component: {fileID: 64700589951394106}
   - component: {fileID: 3279664142770227320}
+  - component: {fileID: 2749035903394342996}
   - component: {fileID: 5105993071804227671}
+  - component: {fileID: 3008359721944668647}
+  - component: {fileID: -6748859333890536525}
   m_Layer: 0
   m_Name: Neo_WallDoorFrame_01_snaps001
   m_TagString: mur
@@ -30,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 1159202960673004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.08, y: 0.09, z: 0.08}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,8 +111,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.31250048, y: 3, z: 3.0000036}
-  m_Center: {x: 0.00000024586916, y: 1.5, z: 1.5000001}
+  m_Size: {x: 0.31250048, y: 3.0000002, z: 0.86331683}
+  m_Center: {x: 0.00000024447218, y: 1.5000001, z: 2.5683398}
+--- !u!65 &2749035903394342996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159202960673004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31250048, y: 0.7477878, z: 3.0000036}
+  m_Center: {x: 0.00000024447218, y: 2.626107, z: 1.4999999}
 --- !u!54 &5105993071804227671
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,3 +142,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &3008359721944668647
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159202960673004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31250048, y: 3, z: 0.939291}
+  m_Center: {x: 0.00000024447218, y: 1.5, z: 0.46964288}
+--- !u!114 &-6748859333890536525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159202960673004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7d3eb659d3b8245a81dfe27906c2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newmur: 1
+  isindic: 0
+  can_place: 1

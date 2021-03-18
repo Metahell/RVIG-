@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 64958667636404022}
   - component: {fileID: -8666109914694562126}
   - component: {fileID: 6550850297661889615}
+  - component: {fileID: -1826443950282217680}
   m_Layer: 0
   m_Name: Neo_WallWindowFrame_01_snaps001
   m_TagString: mur
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1377510677289134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.08, y: 0.09, z: 0.08}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -126,3 +127,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-1826443950282217680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377510677289134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7d3eb659d3b8245a81dfe27906c2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newmur: 1
+  isindic: 0
+  can_place: 1
