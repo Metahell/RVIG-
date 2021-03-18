@@ -6,7 +6,14 @@ using UnityEngine.UI;
 public class WallTest : MonoBehaviour
 {
     public Text text;
+    private bool change = false;
     private bool wallmode = false;
+    private int i = 0;
+    private int max = 2;
+    [SerializeField]
+    private GameObject[] ListWalls;
+    [SerializeField]
+    private GameObject[] ListIndic;
     [SerializeField]
     private RightHand righthand;
     [SerializeField]
@@ -46,12 +53,33 @@ public class WallTest : MonoBehaviour
         }
         if (wallmode)
         {
+            if (OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                Incr(0);
+                wall = ListWalls[i];
+                wallIndic = ListIndic[i];
+            }
+            if (OVRInput.GetDown(OVRInput.Button.One))
+            {
+                Incr(1);
+                wall = ListWalls[i];
+                wallIndic = ListIndic[i];
+            }
             rotation -= secondaryAxis.x * 2;
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick))
+            {
+                rotation += 90;
+            }
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick))
+            {
+                rotation -= 90;
+            }
             if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
                 if (hit.transform.gameObject.tag == "sol")
                 {
-                    if (!ontarget)
+                    
+                    if (!ontarget||indic==null)
                     {
                         ontarget = true;
                         indic = Instantiate(wallIndic, hit.point, Quaternion.identity);
@@ -62,6 +90,12 @@ public class WallTest : MonoBehaviour
                     }
                     if (ontarget)
                     {
+                        if (change)
+                        {
+                            change = false;
+                            Destroy(indic);
+                            indic= Instantiate(wallIndic, hit.point, Quaternion.identity);
+                        }
                         indic.transform.position = hit.point;
                         indic.transform.rotation = Quaternion.Euler(0, rotation, 0);
                     }
@@ -112,5 +146,25 @@ public class WallTest : MonoBehaviour
             }
         }
         return true;
+    }
+    private void Incr(int type)
+    {
+        if (i == max&&type==0)
+        {
+            i = 0;
+        }
+        else if (i == 0 && type == 1)
+        {
+            i = max;
+        }
+        else if (type == 0)
+        {
+            i++;
+        }
+        else
+        {
+            i--;
+        }
+        change = true;
     }
 }
