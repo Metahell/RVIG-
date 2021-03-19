@@ -81,15 +81,22 @@ public class WallTest : MonoBehaviour
                 if (hit.transform.gameObject.tag == "sol")
                 {
                     
-                    if (!ontarget||indic==null)
+                    if (!ontarget)
                     {
                         ontarget = true;
                         n_pos = new Vector3(getClosest(xPos, hit.point.x), hit.point.y, getClosest(zPos, hit.point.z));
-                        indic = Instantiate(wallIndic, n_pos, Quaternion.identity);
-                        Rigidbody rigi = indic.AddComponent<Rigidbody>();
-                        rigi.useGravity = false;
-                        rigi.isKinematic = true;
-                        rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                        if (indic == null)
+                        {
+                            indic = Instantiate(wallIndic, n_pos, Quaternion.identity);
+                            Rigidbody rigi = indic.AddComponent<Rigidbody>();
+                            rigi.useGravity = false;
+                            rigi.isKinematic = true;
+                            rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                        }
+                        else
+                        {
+                            indic.GetComponent<Renderer>().enabled = true;
+                        }
                     }
                     if (ontarget)
                     {
