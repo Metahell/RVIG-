@@ -6154,7 +6154,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Lorsque le mode mur est activ\xE9 :\r\nGachette Index : pose un mur \xE0
-    la position cibl\xE9 dans lla maquette \nGachette Main: supprime le mur vis\xE9\nPression
+    la position cibl\xE9 dans la maquette \nGachette Main: supprime le mur vis\xE9\nPression
     des Thumbsticks gauche/droite : rotation de 90\xB0 gauche/droite\nBouton A/B
     : change le type de mur \xE0 poser"
 --- !u!222 &2117395945
