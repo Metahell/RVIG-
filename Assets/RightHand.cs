@@ -185,11 +185,6 @@ public class RightHand : MonoBehaviour
             }
             Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
             rotation -= secondaryAxis.x * 2;
-            Clear();
-            Print("test\n");
-            Print(secondaryAxis.ToString() + "\n");
-            Print(rotation.ToString() + "\n");
-            Print(OVRInput.Get(OVRInput.Button.Any).ToString() + "\n");
             if (!meuble.GetComponent<Meuble>().mural)
             {
                 controller.EnableRotation = false;
@@ -197,7 +192,6 @@ public class RightHand : MonoBehaviour
             if (OVRInput.Get(OVRInput.Button.Two))
             {
                 pour_mural.transform.position += transform.forward / 50;
-                Print("B pressé\n");
                 if (!meuble.GetComponent<Meuble>().sur_un_mur)
                 {
                     meuble.transform.position += transform.forward / 50;
@@ -207,7 +201,6 @@ public class RightHand : MonoBehaviour
             if (OVRInput.Get(OVRInput.Button.One))
             {
                 pour_mural.transform.position -= transform.forward / 50;
-                Print("A pressé\n");
                 if (!meuble.GetComponent<Meuble>().sur_un_mur)
                 {
                     meuble.transform.position -= transform.forward / 50;
@@ -249,10 +242,6 @@ public class RightHand : MonoBehaviour
                 est_tenu = false;
                 controller.EnableRotation = true;
             }
-        }
-        else
-        {
-            Clear();
         }
     }
     void Print(string s)
