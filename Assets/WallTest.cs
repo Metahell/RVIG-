@@ -37,19 +37,16 @@ public class WallTest : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
             if (wallmode)
             {
                 wallmode = false;
-                controller.EnableRotation = true;
                 righthand.enabled = true;
             }
             else
             {
                 wallmode = true;
-                controller.EnableRotation = false;
                 righthand.enabled = false;
             }
         }
@@ -67,7 +64,6 @@ public class WallTest : MonoBehaviour
                 wall = ListWalls[i];
                 wallIndic = ListIndic[i];
             }
-            rotation -= secondaryAxis.x * 2;
             if (OVRInput.GetDown(OVRInput.Button.SecondaryThumbstick))
             {
                 rotation += 90;
@@ -170,13 +166,16 @@ public class WallTest : MonoBehaviour
 
     private float getClosest(float[] positions,float position)
     {
-        foreach (float c_pos in positions)
+        float min_diff = float.MaxValue;
+        int index = 0;
+        for (int i = 0; i<3;i++)
         {
-            if (position < c_pos)
+            min_diff = Mathf.Min(min_diff, Mathf.Abs(position - positions[i]));
+            if (min_diff == Mathf.Abs(position - positions[i]))
             {
-                return c_pos;
+                index = i;
             }
         }
-        return positions[2];
+        return positions[index];
     }
 }
