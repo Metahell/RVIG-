@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6155,8 +6155,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Lorsque le mode mur est activ\xE9 :\r\nGachette Index : pose un mur \xE0
     la position cibl\xE9 dans la maquette \nGachette Main: supprime le mur vis\xE9\nPression
-    des Thumbsticks gauche/droite : rotation de 90\xB0 gauche/droite\nBouton A/B
-    : change le type de mur \xE0 poser"
+    des joysticks gauche/droite : rotation de 90\xB0 gauche/droite\nBouton A/B :
+    change le type de mur \xE0 poser"
 --- !u!222 &2117395945
 CanvasRenderer:
   m_ObjectHideFlags: 0
