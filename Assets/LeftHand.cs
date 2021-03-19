@@ -7,13 +7,15 @@ public class LeftHand : MonoBehaviour
 {
     public GameObject catalogue;
     [SerializeField]
+    private GameObject Reset;
+    [SerializeField]
     private Canvas Help;
     private bool vue_maquette;
     public OVRPlayerController controller;
     public Transform position_maquette;
     public Transform position_defaut;
     private bool off;
-    private bool helpbool;
+    private bool helpbool=true;
     private float time;
     private float timer;
     // Start is called before the first frame update
@@ -23,7 +25,6 @@ public class LeftHand : MonoBehaviour
         timer = 0.1f;
         catalogue.SetActive(false);
         vue_maquette = false;
-        helpbool = false;
     }
 
     // Update is called once per frame
@@ -60,11 +61,13 @@ public class LeftHand : MonoBehaviour
             {
                 Help.enabled = true;
                 helpbool = true;
+                Reset.SetActive(false);
             }
             else
             {
                 Help.enabled = false;
                 helpbool = false;
+                Reset.SetActive(true);
             }
 
         }

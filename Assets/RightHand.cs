@@ -49,6 +49,10 @@ public class RightHand : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position, transform.forward, out hit) && !est_tenu)
                 {
+                    if (hit.transform.gameObject.CompareTag("reset"))
+                    {
+                        hit.transform.gameObject.GetComponent<ResetButton>().Reset();
+                    }
                     Debug.Log(hit.transform.gameObject.name);
                     bool new_meuble = false;
                     foreach (GameObject meuble_c in meubles)
