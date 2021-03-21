@@ -5,20 +5,29 @@ using UnityEngine.UI;
 
 public class LeftHand : MonoBehaviour
 {
+    //Le catalogue contenant tous les meubles
     public GameObject catalogue;
+    //Bouton reset qui apparaît ou disparait selon l'input du joueur (aide affichée ou non) 
     [SerializeField]
     private GameObject Reset;
+    //Affichage d'aide qui apparaît ou disparait selon l'input du joueur (bouton reset affichée ou non) 
     [SerializeField]
     private Canvas Help;
+    //définit si le joueur est en vue maquette ou non
     private bool vue_maquette;
     public OVRPlayerController controller;
+    //positions par défaut du mode maquette ou normal, respectivement
     public Transform position_maquette;
     public Transform position_defaut;
+    //booléen gérant limitant le nombre de transitions entre les vues maquette et normal
     private bool off;
+    //gère l'affichage d'aide
     private bool helpbool=true;
+    //constantes de temps entre chaque transition
     private float time;
     private float timer;
     // Start is called before the first frame update
+    //initialisation des timer et booléens
     void Start()
     {
         time = 0f;
@@ -28,6 +37,7 @@ public class LeftHand : MonoBehaviour
     }
 
     // Update is called once per frame
+    //gère les inputs de la manette gauche pour l'affichage du catalogue, la vue maquette (limitée par un timer) et l'affichage de l'aide
     void Update()
     {
         if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))

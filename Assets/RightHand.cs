@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 public class RightHand : MonoBehaviour
 {
+    //liste des meubles disponibles
     public GameObject[] meubles;
+    //meuble tenu par le joueur
     private GameObject meuble;
+    //booléen déterminant si le joueur tient un meuble
     private bool est_tenu;
     public Text text;
     public OVRPlayerController controller;
     private float rotation;
+    //objet vide placeholder gardant la position standard d'un objet mural selectionné
     public GameObject pour_mural;
     // Start is called before the first frame update
+    //initialisation de pour_mural, nécessaire pour placer les objets muraux, est_tenu qui permet de savoir si le joueur tient un meuble et rotation qui définit la rotation du meuble
     void Start()
     {
         pour_mural = Instantiate(new GameObject("pour_mural"), transform.position + transform.forward * 0.5f, Quaternion.identity);
@@ -21,6 +26,7 @@ public class RightHand : MonoBehaviour
     }
 
     // Update is called once per frame
+    //gère les inputs de la main droite
     void Update()
     {
         RaycastHit hit;

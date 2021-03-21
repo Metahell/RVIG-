@@ -16,7 +16,7 @@ public class ResetButton : MonoBehaviour
     {
         
     }
-
+    //Reload la scène
     public void Reset()
     {
         SceneManager.LoadScene(0);

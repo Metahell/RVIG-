@@ -6,36 +6,48 @@ using UnityEngine.UI;
 public class WallTest : MonoBehaviour
 {
     public Text text;
+    //utilisé lors du changement du type de mur
     private bool change = false;
+    //définit si le mode mur est activé ou non
     private bool wallmode = false;
+    //indices utilisés dans les listes de murs/murs indicateurs
     private int i = 0;
     private int max = 2;
+    //listes de murs/murs indicateurs
     [SerializeField]
     private GameObject[] ListWalls;
     [SerializeField]
     private GameObject[] ListIndic;
     [SerializeField]
     private RightHand righthand;
+    //Mur et mur indicateur actuels
     [SerializeField]
     private GameObject wall;
     [SerializeField]
     private GameObject wallIndic;
+    //Instance de l'indicateur, détruite ou changée au besoin
     private GameObject indic;
+    //rotation de l'indicateur et du mur posé
     private float rotation=0;
-    private float timeHeld;
+    //définit si le joueur vise le sol de la maquette ou non
     private bool ontarget = false;
     public OVRPlayerController controller;
+    //positions de placement des murs possibles
     private float[] zPos = {14.649f,14.89f,15.131f};
     private float[] xPos = {7.944f, 8.185f, 8.426f};
+    //position de placement arrondie à l'une de celles possible
     private Vector3 n_pos;
+    //texte indiquant au joueur si le mode mur est activé
     public Text UIwallmode;
     // Start is called before the first frame update
+    //mode mur désactivé par défaut
     void Start()
     {
         UIwallmode.enabled = false;
     }
 
     // Update is called once per frame
+    //gère les inputs relatifs au mode mur
     void Update()
     {
         RaycastHit hit;
@@ -138,6 +150,8 @@ public class WallTest : MonoBehaviour
         }
     }
   
+    //type : définit l'opération effectuée sur l'indice, 0 - addition, 1 - soustraction
+    //incrémente ou décrémente l'indice entre 0 et max
     private void Incr(int type)
     {
         if (i == max&&type==0)
@@ -158,7 +172,9 @@ public class WallTest : MonoBehaviour
         }
         change = true;
     }
-
+    //positions : floats correspondant aux coordonnées z ou x des positions possible pour placer un mur,
+    //position : float correspondant à la coordonnée z ou x de la position visée
+    //retourne le float le plus proche de position parmi ceux de positions 
     private float getClosest(float[] positions,float position)
     {
         float min_diff = float.MaxValue;
