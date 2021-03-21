@@ -28,6 +28,7 @@ public class WallTest : MonoBehaviour
     private float[] zPos = {14.649f,14.89f,15.131f};
     private float[] xPos = {7.944f, 8.185f, 8.426f};
     private Vector3 n_pos;
+    public Text UIwallmode;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,16 +40,9 @@ public class WallTest : MonoBehaviour
         RaycastHit hit;
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
-            if (wallmode)
-            {
-                wallmode = false;
-                righthand.enabled = true;
-            }
-            else
-            {
-                wallmode = true;
-                righthand.enabled = false;
-            }
+            wallmode = !wallmode;
+            righthand.enabled = !wallmode;
+            UIwallmode.enabled = wallmode;
         }
         if (wallmode)
         {
