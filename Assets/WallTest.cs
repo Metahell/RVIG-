@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class WallTest : MonoBehaviour
 {
     public Text text;
-    //utilisé lors du changement du type de mur
-    private bool change = false;
-    //définit si le mode mur est activé ou non
-    private bool wallmode = false;
+
+    private bool change = false;    //utilisé lors du changement du type de mur
+   
+    private bool wallmode = false;  //définit si le mode mur est activé ou non
+
     //indices utilisés dans les listes de murs/murs indicateurs
     private int i = 0;
     private int max = 2;
+
     //listes de murs/murs indicateurs
     [SerializeField]
     private GameObject[] ListWalls;
@@ -20,30 +22,34 @@ public class WallTest : MonoBehaviour
     private GameObject[] ListIndic;
     [SerializeField]
     private RightHand righthand;
+
     //Mur et mur indicateur actuels
     [SerializeField]
     private GameObject wall;
     [SerializeField]
     private GameObject wallIndic;
-    //Instance de l'indicateur, détruite ou changée au besoin
-    private GameObject indic;
-    //rotation de l'indicateur et du mur posé
-    private float rotation=0;
-    //définit si le joueur vise le sol de la maquette ou non
-    private bool ontarget = false;
-    public OVRPlayerController controller;
+
+    private GameObject indic;   //Instance de l'indicateur, détruite ou changée au besoin
+
+    private float rotation=0;    //rotation de l'indicateur et du mur posé
+
+    private bool ontarget = false;    //définit si le joueur vise le sol de la maquette ou non
+
+    public OVRPlayerController controller; //controller du joueur
+
     //positions de placement des murs possibles
     private float[] zPos = {14.649f,14.89f,15.131f};
     private float[] xPos = {7.944f, 8.185f, 8.426f};
-    //position de placement arrondie à l'une de celles possible
-    private Vector3 n_pos;
-    //texte indiquant au joueur si le mode mur est activé
-    public Text UIwallmode;
+
+    private Vector3 n_pos;  //position de placement arrondie à l'une de celles possible
+
+    public Text UIwallmode;    //texte indiquant au joueur si le mode mur est activé
+
     // Start is called before the first frame update
-    //mode mur désactivé par défaut
+
     void Start()
     {
-        UIwallmode.enabled = false;
+        UIwallmode.enabled = false;    //mode mur désactivé par défaut
     }
 
     // Update is called once per frame

@@ -5,46 +5,52 @@ using UnityEngine.UI;
 
 public class LeftHand : MonoBehaviour
 {
-    //Le catalogue contenant tous les meubles
-    public GameObject catalogue;
-    //Bouton reset qui apparaît ou disparait selon l'input du joueur (aide affichée ou non) 
+    public GameObject catalogue;    //Le catalogue contenant tous les meubles
+
     [SerializeField]
-    private GameObject Reset;
-    //Affichage d'aide qui apparaît ou disparait selon l'input du joueur (bouton reset affichée ou non) 
+    private GameObject Reset;    //Bouton reset qui apparaît ou disparait selon l'input du joueur (aide affichée ou non) 
+
+
     [SerializeField]
-    private Canvas Help;
-    //définit si le joueur est en vue maquette ou non
-    private bool vue_maquette;
-    public OVRPlayerController controller;
+    private Canvas Help;    //Affichage d'aide qui apparaît ou disparait selon l'input du joueur (bouton reset affichée ou non) 
+
+    private bool vue_maquette;    //définit si le joueur est en vue maquette ou non
+
+    public OVRPlayerController controller;  //controller du joueur
+
     //positions par défaut du mode maquette ou normal, respectivement
     public Transform position_maquette;
     public Transform position_defaut;
-    //booléen gérant limitant le nombre de transitions entre les vues maquette et normal
-    private bool off;
-    //gère l'affichage d'aide
-    private bool helpbool=true;
+
+    private bool off;    //booléen limitant le nombre de transitions entre les vues maquette et normal
+
+    private bool helpbool=true;    //gère l'affichage d'aide
+
     //constantes de temps entre chaque transition
     private float time;
     private float timer;
+
     // Start is called before the first frame update
     //initialisation des timer et booléens
     void Start()
     {
+        //Initialisation des timers
         time = 0f;
         timer = 0.1f;
-        catalogue.SetActive(false);
-        vue_maquette = false;
+
+        catalogue.SetActive(false); //catalogue désactivé par défaut
+        vue_maquette = false;   //le joueur est en vue normale
     }
 
     // Update is called once per frame
     //gère les inputs de la manette gauche pour l'affichage du catalogue, la vue maquette (limitée par un timer) et l'affichage de l'aide
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))   //affchage catalogue
         {
             catalogue.SetActive(!catalogue.activeInHierarchy);
         }
-        if (OVRInput.GetDown(OVRInput.Button.Three) || Input.GetMouseButtonDown(1))
+        if (OVRInput.GetDown(OVRInput.Button.Three) || Input.GetMouseButtonDown(1)) //changement de vue normale/maquette
         {
             controller.enabled = false;
             off = true;
@@ -65,7 +71,7 @@ public class LeftHand : MonoBehaviour
             }
 
         }
-        if (OVRInput.GetDown(OVRInput.Button.Four))
+        if (OVRInput.GetDown(OVRInput.Button.Four)) //affichage menu d'aide/bouton resset
         {
             if (!helpbool)
             {
@@ -81,7 +87,7 @@ public class LeftHand : MonoBehaviour
             }
 
         }
-        if (off)
+        if (off)    //désactive le controller du joueur pendant 0.1 secondes après changement de vue pour éviter des téléportations imprévues
         {
             time += Time.deltaTime;
             if (time > timer)

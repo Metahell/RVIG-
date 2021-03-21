@@ -4,25 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 public class RightHand : MonoBehaviour
 {
-    //liste des meubles disponibles
-    public GameObject[] meubles;
-    //meuble tenu par le joueur
-    private GameObject meuble;
-    //booléen déterminant si le joueur tient un meuble
-    private bool est_tenu;
-    public Text text;
-    public OVRPlayerController controller;
-    private float rotation;
-    //objet vide placeholder gardant la position standard d'un objet mural selectionné
-    public GameObject pour_mural;
+    public GameObject[] meubles;    //liste des meubles disponibles
+
+
+    private GameObject meuble;    //meuble tenu par le joueur
+
+    private bool est_tenu;    //booléen déterminant si le joueur tient un meuble
+
+    public Text text;   //texte de log pour le debug
+
+    public OVRPlayerController controller;  //controller du joueur
+
+    private float rotation;     // pour la rotation selon l'axe y des meubles
+
+    public GameObject pour_mural;   //objet vide placeholder gardant la position standard d'un objet mural selectionné
+
     // Start is called before the first frame update
-    //initialisation de pour_mural, nécessaire pour placer les objets muraux, est_tenu qui permet de savoir si le joueur tient un meuble et rotation qui définit la rotation du meuble
+    //initialisation de pour_mural, est_tenu rotation
     void Start()
     {
+        //pour_mural est initialisé devant la main droite du joueur
         pour_mural = Instantiate(new GameObject("pour_mural"), transform.position + transform.forward * 0.5f, Quaternion.identity);
         pour_mural.transform.parent = transform;
-        est_tenu = false;
-        rotation = 0;
+
+        est_tenu = false; //aucun mur tenu par défaut
+        rotation = 0;   //rotation nulle au départ
     }
 
     // Update is called once per frame
@@ -30,9 +36,9 @@ public class RightHand : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0))
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButtonDown(0)) //gère la gachette main droite
         {
-            if (est_tenu && meuble.GetComponent<Meuble>().can_place)
+            if (est_tenu && meuble.GetComponent<Meuble>().can_place)    //pose le meuble
             {
                 est_tenu = false;
                 Rigidbody rigi = meuble.GetComponent<Rigidbody>();
@@ -53,15 +59,14 @@ public class RightHand : MonoBehaviour
             }
             else
             {
-                if (Physics.Raycast(transform.position, transform.forward, out hit) && !est_tenu)
+                if (Physics.Raycast(transform.position, transform.forward, out hit) && !est_tenu)   //regarde si le joueur a visé un meuble ou le bouton reset
                 {
                     if (hit.transform.gameObject.CompareTag("reset"))
                     {
                         hit.transform.gameObject.GetComponent<ResetButton>().Reset();
                     }
-                    Debug.Log(hit.transform.gameObject.name);
-                    bool new_meuble = false;
-                    foreach (GameObject meuble_c in meubles)
+                    bool new_meuble = false;    //indique si le joueur créé un nouveau meuble du catalogue ou non
+                    foreach (GameObject meuble_c in meubles)    //vérifie si le joueur vise un meuble du catalogue
                     {
                         if (meuble_c.name == hit.transform.gameObject.name)
                         {
@@ -74,16 +79,16 @@ public class RightHand : MonoBehaviour
                             meuble.transform.parent = transform;
                             est_tenu = true;
                             new_meuble = true;
-                            if (meuble.GetComponent<Meuble>().mural)
+                            if (meuble.GetComponent<Meuble>().mural)    //empèche les Raycast de prendre en compte le meuble s'il est destiné à sa placer sur un mur
                             {
                                 meuble.layer = 2;
                             }
                             break;
                         }
                     }
-                    if (!new_meuble)
+                    if (!new_meuble)    //le joueur n'as pas créé de nouveau meuble
                     {
-                        if (hit.transform.gameObject.tag == "meuble")
+                        if (hit.transform.gameObject.tag == "meuble")   //le joueur vise un meuble déjà existant
                         {
                             meuble = hit.transform.gameObject;
                             meuble.transform.position = transform.position + transform.forward * 0.5f;
@@ -100,15 +105,15 @@ public class RightHand : MonoBehaviour
                 }
             }
         }
-        if (est_tenu)
+        if (est_tenu)   //le joueur tient un meuble
         {
             Meuble meuble_script = meuble.GetComponent<Meuble>();
             meuble_script.sur_un_mur = false;
-            if (meuble_script.mural)
+            if (meuble_script.mural)    //le meuble tenu se place sur un mur
             {
-                if (Physics.Raycast(transform.position,transform.forward,out hit))
+                if (Physics.Raycast(transform.position,transform.forward,out hit))//vérifie si le joueur vise un mur
                 {
-                    if (hit.transform.gameObject.CompareTag("mur"))
+                    if (hit.transform.gameObject.CompareTag("mur")) //déplace le meuble sur le mur visé
                     {
                         meuble.transform.parent = null;
                         meuble.transform.position = hit.point;
@@ -126,85 +131,32 @@ public class RightHand : MonoBehaviour
                         meuble.transform.position = pour_mural.transform.position;
                     }
                 }
-
-
-
-
-                //Collider[] hit_colliders = Physics.OverlapSphere(pour_mural.transform.position, 0.2f);
-                //foreach (Collider col in hit_colliders)
-                //{
-                //    if (col.transform.gameObject.CompareTag("mur"))
-                //    {
-                //        Vector3 mur_position = col.ClosestPoint(pour_mural.transform.position);
-                //        if (Physics.Raycast(pour_mural.transform.position, mur_position - pour_mural.transform.position, out hit))
-                //        {
-                //            if (hit.transform.gameObject.CompareTag("mur"))
-                //            {
-                //                if (hit.normal == Vector3.up)
-                //                {
-                //                    break;
-                //                }
-                //                meuble.transform.parent = null;
-                //                meuble.transform.position = hit.point;
-                //                Quaternion new_rotation = new Quaternion();
-                //                new_rotation.SetLookRotation(hit.normal, Vector3.up);
-                //                meuble.transform.rotation = new_rotation;
-                //                meuble_script.can_place = true;
-                //                meuble_script.sur_un_mur = true;
-                //                break;
-
-                //            }
-                //            else
-                //            {
-                //                meuble_script.can_place = false;
-                //                meuble_script.sur_un_mur = false;
-                //                meuble.transform.parent = transform;
-                //                meuble.transform.position = pour_mural.transform.position;
-
-                //            }
-                //        }
-                //        else
-                //        {
-                //            meuble_script.can_place = false;
-                //            meuble_script.sur_un_mur = false;
-                //            meuble.transform.parent = transform;
-                //            meuble.transform.position = pour_mural.transform.position;
-
-                //        }
-
-                //    }
-                //    else
-                //    {
-                //        meuble_script.can_place = false;
-                //        meuble_script.sur_un_mur = false;
-                //        meuble.transform.parent = transform;
-                //        meuble.transform.position = pour_mural.transform.position;
-                //    }
-                //}
             }
 
             Vector3 lookat = transform.position;
             lookat.y = meuble.transform.position.y;
-            if (!meuble.GetComponent<Meuble>().sur_un_mur)
+            if (!meuble.GetComponent<Meuble>().sur_un_mur)// le meuble fait face au joueur
             {
                 meuble.transform.LookAt(lookat);
             }
-            Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+
+            Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);  //mouvement du joystick droit
+
             rotation -= secondaryAxis.x * 2;
-            if (!meuble.GetComponent<Meuble>().mural)
+            if (!meuble.GetComponent<Meuble>().mural)   //désactive la rotation du joueur, sauf si le meuble tenu va sur un mur
             {
                 controller.EnableRotation = false;
             }
-            if (OVRInput.Get(OVRInput.Button.Two))
+            if (OVRInput.Get(OVRInput.Button.Two))  //éloigne le meuble du joueur
             {
-                pour_mural.transform.position += transform.forward / 50;
-                if (!meuble.GetComponent<Meuble>().sur_un_mur)
+                pour_mural.transform.position += transform.forward / 50;    //pour sauvegarder la position d'un meuble mural (s'il doit se placer sur un mur puis revenir devant la main du joueur)
+                if (!meuble.GetComponent<Meuble>().sur_un_mur)  //ne déplace pas le meuble s'il est mural
                 {
                     meuble.transform.position += transform.forward / 50;
                 }
             }
 
-            if (OVRInput.Get(OVRInput.Button.One))
+            if (OVRInput.Get(OVRInput.Button.One))  //rapproche le meuble du joueur
             {
                 pour_mural.transform.position -= transform.forward / 50;
                 if (!meuble.GetComponent<Meuble>().sur_un_mur)
@@ -213,36 +165,36 @@ public class RightHand : MonoBehaviour
                 }
             }
 
-            if ((pour_mural.transform.position - transform.position).magnitude > 1f)
+            if ((pour_mural.transform.position - transform.position).magnitude > 1f)    //limite lointaine de la sauvegarde de position pour les meubles muraux
             {
                 pour_mural.transform.position = transform.position + transform.forward;
             }
 
-            if ((pour_mural.transform.position - transform.position).magnitude < 0.2f)
+            if ((pour_mural.transform.position - transform.position).magnitude < 0.2f)  //limite proche de la sauvegarde de position pour les meubles muraux
             {
                 pour_mural.transform.position = transform.position + transform.forward * 0.2f;
             }
 
-            if ((meuble.transform.position - transform.position).magnitude > 1f)
+            if ((meuble.transform.position - transform.position).magnitude > 1f)    //limite proche du meuble
             {
-                if (!meuble.GetComponent<Meuble>().sur_un_mur)
+                if (!meuble.GetComponent<Meuble>().sur_un_mur)  //rapprocher le meuble sauf s'il placé sur un mur
                 {
 
                     meuble.transform.position = transform.position + transform.forward;
                 }
             }
-            if ((meuble.transform.position - transform.position).magnitude < 0.2f)
+            if ((meuble.transform.position - transform.position).magnitude < 0.2f)  //éloigner le meuble sauf s'il est sur un mur
             {
                 if (!meuble.GetComponent<Meuble>().sur_un_mur)
                 {
                     meuble.transform.position = transform.position + transform.forward * 0.2f;
                 }
             }
-            if (!meuble.GetComponent<Meuble>().mural)
+            if (!meuble.GetComponent<Meuble>().mural)   //tourne le meuble conformément au mouvement du joystick droit, sauf si le meuble est mural
             {
                 meuble.transform.Rotate(0, rotation, 0);
             }
-            if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))
+            if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))  //supprime le meuble
             {
                 Destroy(meuble);
                 est_tenu = false;
@@ -250,12 +202,12 @@ public class RightHand : MonoBehaviour
             }
         }
     }
-    void Print(string s)
+    void Print(string s)    //fonction d'affichage pour le debug
     {
         text.text += s;
     }
 
-    void Clear()
+    void Clear()    //fonction d'affichage pour le debug
     {
         text.text = "";
     }

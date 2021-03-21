@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Mur : MonoBehaviour
 {
+    public bool newmur=true;    //empêche de supprimer les murs originels de la maquette
+
+
+    public bool isindic = false;    //différencie les murs indicateurs des murs permanents
+
+    public bool can_place=true;    //conditionne la pose des murs
+
+    private MeshRenderer mesh;  //mesh de l'objet mur, utilisé si le mur est un indicateur
+    
     // Start is called before the first frame update
-    //empêche de supprimer les murs originels de la maquette
-    public bool newmur=true;
-    //différencie les murs indicateurs des murs permanents
-    public bool isindic = false;
-    //conditionne la pose des murs
-    public bool can_place=true;
-    private MeshRenderer mesh;
-    // Start is called before the first frame update
-    //Le mur indicateur prend la couleur verte à l'initialisation
     void Start()
     {
         if (isindic)
         {
             mesh = GetComponent<MeshRenderer>();
-            canplace();
+            canplace(); //Le mur indicateur prend la couleur verte à l'initialisation
         }
     }
+
     // le mur prend la couleur verte
     public void canplace()
     {
@@ -30,6 +31,7 @@ public class Mur : MonoBehaviour
             material.color = Color.green;
         }
     }
+
     //le mur prend le couleur rouge
     public void cantplace()
     {
@@ -38,6 +40,7 @@ public class Mur : MonoBehaviour
             material.color = Color.red;
         }
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,6 +52,7 @@ public class Mur : MonoBehaviour
             }
         }
     }
+
     //collision : mur prend la couleur rouge, can_place devient false
     private void OnTriggerEnter(Collider other)
     {
@@ -61,6 +65,7 @@ public class Mur : MonoBehaviour
             }
         }
     }
+
     //fin de collision : mur indicateur devient vert, can_place devient true
     private void OnTriggerExit(Collider other)
     {
