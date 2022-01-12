@@ -9,7 +9,7 @@ public class RightHand : MonoBehaviour
 
     private GameObject meuble;    //meuble tenu par le joueur
 
-    private bool est_tenu;    //booléen déterminant si le joueur tient un meuble
+    public bool est_tenu;    //booléen déterminant si le joueur tient un meuble
 
     public Text text;   //texte de log pour le debug
 

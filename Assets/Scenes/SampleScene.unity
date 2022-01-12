@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 241f7171ba893f8499173a36145b23c1,
-    type: 2}
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -119,8 +118,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -177,7 +174,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -259,7 +255,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -422,7 +417,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -499,7 +493,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -524,7 +517,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &241437428
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -627,7 +619,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &256771809
 Canvas:
   m_ObjectHideFlags: 0
@@ -855,7 +846,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -900,7 +890,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1125,7 +1114,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &561482726
 Canvas:
   m_ObjectHideFlags: 0
@@ -1205,7 +1193,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.9453848, g: 0.9716981, b: 0.03208439, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1308,7 +1295,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &631447309
@@ -1500,6 +1486,7 @@ MonoBehaviour:
   - {fileID: 653579275}
   - {fileID: 1790894614}
   - {fileID: 778539756}
+  est_tenu: 0
   text: {fileID: 1578511492}
   controller: {fileID: 1932705677}
   pour_mural: {fileID: 0}
@@ -1525,6 +1512,7 @@ MonoBehaviour:
   - {fileID: 1159202960673004, guid: d21dc231154fe9049a5ca9ba95ed7d45, type: 3}
   - {fileID: 1377510677289134, guid: e1d2b1de43e8bc140832ae8270975899, type: 3}
   righthand: {fileID: 651984857}
+  lefthand: {fileID: 0}
   wall: {fileID: 1720321481462350, guid: c73151b2c863d094393f47d50c325553, type: 3}
   wallIndic: {fileID: 1720321481462350, guid: 062941fca5d7f504994db8fa946d83f9, type: 3}
   controller: {fileID: 1932705677}
@@ -1543,6 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catalogue: {fileID: 1207409700}
   Reset: {fileID: 1101527519}
+  activateCatalog: 0
   Help: {fileID: 1185794447}
   controller: {fileID: 1932705677}
   position_maquette: {fileID: 1510432019}
@@ -1723,7 +1712,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1806,7 +1794,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1985,7 +1972,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &758896896
@@ -2041,7 +2027,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2440,7 +2425,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &821444302
@@ -2696,7 +2680,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2721,7 +2704,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &917803695
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3045,6 +3027,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1105314688095798056, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105314688095798056, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259019097159262260, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1259019097159262260, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829385186943112388, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829385186943112388, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993952258637161275, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3036652533509684927, guid: 609b4dddfafd08b4eaaaad61224f94e6,
         type: 3}
       propertyPath: m_RootOrder
@@ -3100,12 +3117,148 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3791637781781333428, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791637781781333428, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287350080462817415, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287350080462817415, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290000086788504050, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4290000086788504050, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4984007587921992769, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4984007587921992769, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753022258409498854, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753022258409498854, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995431684503549724, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995431684503549724, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110079565405375610, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110079565405375610, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122136141626355884, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122136141626355884, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668694958850927888, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668694958850927888, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8253953601804778193, guid: 609b4dddfafd08b4eaaaad61224f94e6,
         type: 3}
       propertyPath: m_Name
       value: test
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9176950311303889843, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176950311303889843, guid: 609b4dddfafd08b4eaaaad61224f94e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7357666855451413385, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 4899062129993099793, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 8251953023004073809, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 1024875579969848854, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 3745733747625754577, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 6301525330249000251, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 4616868837787252801, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 6843099171204750435, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 4494264997481726606, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 6709246408066632278, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 8214140937492676423, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 393052260582153059, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 6553924769864061364, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 3684424282105779112, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 7958763295479480661, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 5925985357129234986, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 2626773261581477057, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 4683516876847959845, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 8344541509895062724, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 7043325351901834089, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 924838876339952352, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 8083905347599942897, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 4311516270282314994, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 6250660028363367803, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 3045756293079989098, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 2499802396024339323, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 5173117384372145903, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 5217975865233784570, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 1529948674348018695, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 2987321908044076920, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 3507737133924568830, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 6757272250106199927, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 2395029159874830694, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 5456601378723611610, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 2797550187588891219, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
+    - {fileID: 6496609628509809730, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 609b4dddfafd08b4eaaaad61224f94e6, type: 3}
 --- !u!1 &1074485485
 GameObject:
@@ -3163,7 +3316,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3393,7 +3545,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &1100056307
 Canvas:
   m_ObjectHideFlags: 0
@@ -3541,7 +3692,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3566,7 +3716,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1124767701
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3633,7 +3782,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &1185794447
 Canvas:
   m_ObjectHideFlags: 0
@@ -3765,7 +3913,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3790,7 +3937,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1210641216
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3862,7 +4008,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3887,7 +4032,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1227605676
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4001,7 +4145,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4026,7 +4169,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1244914788
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4423,7 +4565,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4678,7 +4819,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4703,7 +4843,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1646517279
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4804,7 +4943,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4829,7 +4967,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1653527547
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4951,7 +5088,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.10323961, g: 0.754717, b: 0.16715883, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5604,7 +5740,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5695,7 +5830,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5786,7 +5920,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5811,7 +5944,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1956919110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5916,7 +6048,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5941,7 +6072,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1998162990
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6032,7 +6162,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6057,7 +6186,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &2039829906
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6198,7 +6326,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -10,7 +10,11 @@ public class LeftHand : MonoBehaviour
     [SerializeField]
     private GameObject Reset;    //Bouton reset qui apparaît ou disparait selon l'input du joueur (aide affichée ou non) 
 
+    private float Testtimer = 0.0F;
+    private bool TestStarted = false;
+    private float FinalValue;
 
+    public bool activateCatalog=false;
     [SerializeField]
     private Canvas Help;    //Affichage d'aide qui apparaît ou disparait selon l'input du joueur (bouton reset affichée ou non) 
 
@@ -46,13 +50,30 @@ public class LeftHand : MonoBehaviour
     //gère les inputs de la manette gauche pour l'affichage du catalogue, la vue maquette (limitée par un timer) et l'affichage de l'aide
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))   //affchage catalogue
+        if(TestStarted) Testtimer += Time.deltaTime;
+        if (!WallTest.wallmode){
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))   //affchage catalogue
+            {
+                activateCatalog = !catalogue.activeInHierarchy;
+                catalogue.SetActive(activateCatalog);
+            }
+        }
+        if(WallTest.wallmode && activateCatalog)
         {
-            catalogue.SetActive(!catalogue.activeInHierarchy);
+            activateCatalog = !catalogue.activeInHierarchy;
+            catalogue.SetActive(activateCatalog);
         }
         if (OVRInput.GetDown(OVRInput.Button.Three) || Input.GetMouseButtonDown(1)) //changement de vue normale/maquette
         {
-            controller.enabled = false;
+            if (Testtimer==0 && !TestStarted)
+            {
+                TestStarted = true;
+            }
+            else
+            {
+                Testtimer = FinalValue;
+            }
+            /*controller.enabled = false;
             off = true;
             time = 0f;
             if (!vue_maquette)
@@ -69,7 +90,7 @@ public class LeftHand : MonoBehaviour
                 controller.transform.rotation = position_defaut.rotation;
                 vue_maquette = false;
             }
-
+            */
         }
         if (OVRInput.GetDown(OVRInput.Button.Four)) //affichage menu d'aide/bouton resset
         {
