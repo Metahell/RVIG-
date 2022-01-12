@@ -12,6 +12,8 @@ public class RightHand : MonoBehaviour
     public Transform TPlanteHaute;
     public Transform TPlanteLarge;
 
+    private bool bientot = false;
+    public GameObject lefthand;
     private GameObject meuble;    //meuble tenu par le joueur
 
     public bool est_tenu;    //booléen déterminant si le joueur tient un meuble
@@ -45,6 +47,11 @@ public class RightHand : MonoBehaviour
         {
             if (est_tenu && meuble.GetComponent<Meuble>().can_place)    //pose le meuble
             {
+                if (bientot)
+                {
+                    lefthand.GetComponent<LeftHand>().TestStarted = false;
+                    text.text = "finiito";
+                }
                 est_tenu = false;
                 Rigidbody rigi = meuble.GetComponent<Rigidbody>();
 
@@ -231,6 +238,7 @@ public class RightHand : MonoBehaviour
                         meuble.transform.position = TPlanteHaute.position;
                         meuble.transform.position += new Vector3(0, 0.01f, 0);
                         meuble.transform.rotation = TPlanteHaute.rotation;
+                        bientot = true;
                     }
                     break;
                 case "PotPlant_02_snaps001(Clone)":
@@ -249,7 +257,8 @@ public class RightHand : MonoBehaviour
                         meuble.transform.rotation = TTable.rotation;
                     }
                     break;
-                default: break;
+                default:
+                    bientot = false; break;
             }
             if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))  //supprime le meuble
             {

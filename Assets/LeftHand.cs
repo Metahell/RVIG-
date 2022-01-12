@@ -11,7 +11,7 @@ public class LeftHand : MonoBehaviour
     private GameObject Reset;    //Bouton reset qui apparaît ou disparait selon l'input du joueur (aide affichée ou non) 
 
     private float Testtimer = 0.0F;
-    private bool TestStarted = false;
+    public bool TestStarted = false;
     private float FinalValue;
 
     public bool activateCatalog=false;
