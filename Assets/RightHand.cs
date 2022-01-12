@@ -213,6 +213,7 @@ public class RightHand : MonoBehaviour
                     if (Vector3.Distance(meuble.transform.position, TChaise.position) < 0.1f)
                     {
                         meuble.transform.position = TChaise.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
                         meuble.transform.rotation = TChaise.rotation;
                     }
                     break;
@@ -220,6 +221,7 @@ public class RightHand : MonoBehaviour
                     if (Vector3.Distance(meuble.transform.position, TCommode.position) < 0.1f)
                     {
                         meuble.transform.position = TCommode.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
                         meuble.transform.rotation = TCommode.rotation;
                     }
                     break;
@@ -227,6 +229,7 @@ public class RightHand : MonoBehaviour
                     if (Vector3.Distance(meuble.transform.position, TPlanteHaute.position) < 0.1f)
                     {
                         meuble.transform.position = TPlanteHaute.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
                         meuble.transform.rotation = TPlanteHaute.rotation;
                     }
                     break;
@@ -234,6 +237,7 @@ public class RightHand : MonoBehaviour
                     if (Vector3.Distance(meuble.transform.position, TPlanteLarge.position) < 0.1f)
                     {
                         meuble.transform.position = TPlanteLarge.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
                         meuble.transform.rotation = TPlanteLarge.rotation;
                     }
                     break;
@@ -241,6 +245,7 @@ public class RightHand : MonoBehaviour
                     if (Vector3.Distance(meuble.transform.position, TTable.position) < 0.1f)
                     {
                         meuble.transform.position = TTable.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
                         meuble.transform.rotation = TTable.rotation;
                     }
                     break;
