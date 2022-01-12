@@ -1533,7 +1533,7 @@ MonoBehaviour:
   - {fileID: 1159202960673004, guid: d21dc231154fe9049a5ca9ba95ed7d45, type: 3}
   - {fileID: 1377510677289134, guid: e1d2b1de43e8bc140832ae8270975899, type: 3}
   righthand: {fileID: 651984857}
-  lefthand: {fileID: 0}
+  lefthand: {fileID: 651984859}
   wall: {fileID: 1720321481462350, guid: c73151b2c863d094393f47d50c325553, type: 3}
   wallIndic: {fileID: 1720321481462350, guid: 062941fca5d7f504994db8fa946d83f9, type: 3}
   controller: {fileID: 1932705677}
@@ -1553,6 +1553,7 @@ MonoBehaviour:
   catalogue: {fileID: 1207409700}
   Reset: {fileID: 1101527519}
   TestStarted: 0
+  switchnbr: 0
   activateCatalog: 0
   Help: {fileID: 1185794447}
   controller: {fileID: 1932705677}

@@ -13,7 +13,7 @@ public class LeftHand : MonoBehaviour
     private float Testtimer = 0.0F;
     public bool TestStarted = false;
     private float FinalValue;
-
+    public int switchnbr = 0;
     public bool activateCatalog=false;
     [SerializeField]
     private Canvas Help;    //Affichage d'aide qui apparaît ou disparait selon l'input du joueur (bouton reset affichée ou non) 

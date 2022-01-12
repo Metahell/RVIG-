@@ -38,7 +38,6 @@ public class WallTest : MonoBehaviour
 
     private bool ontarget = false;    //définit si le joueur vise le sol de la maquette ou non
 
-    private int switchNbr = 0;
     public OVRPlayerController controller; //controller du joueur
 
     //positions de placement des murs possibles
@@ -63,7 +62,7 @@ public class WallTest : MonoBehaviour
         RaycastHit hit;
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
-            switchNbr++;
+            lefthand.GetComponent<LeftHand>().switchnbr++;
             wallmode = !wallmode;
             if(!wallmode && righthand.est_tenu)
             {
