@@ -77,6 +77,7 @@ public class RightHand : MonoBehaviour
                             rigi.isKinematic = true;
                             rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                             meuble.transform.parent = transform;
+                            text.text = meuble.name;
                             est_tenu = true;
                             new_meuble = true;
                             if (meuble.GetComponent<Meuble>().mural)    //empèche les Raycast de prendre en compte le meuble s'il est destiné à sa placer sur un mur
