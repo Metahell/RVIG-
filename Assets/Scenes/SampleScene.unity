@@ -688,7 +688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272073729}
   m_LocalRotation: {x: -0, y: 0.004344657, z: -0, w: 0.9999906}
-  m_LocalPosition: {x: 0.4250002, y: 0.16999996, z: 0.20199966}
+  m_LocalPosition: {x: 0.307, y: 0.022, z: 0.203}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.001}
   m_Children: []
   m_Father: {fileID: 651984862}
@@ -1633,6 +1633,7 @@ MonoBehaviour:
   wallIndic: {fileID: 1720321481462350, guid: 062941fca5d7f504994db8fa946d83f9, type: 3}
   controller: {fileID: 1932705677}
   UIwallmode: {fileID: 1754936037}
+  NotUIWallMode: {fileID: 272073729}
 --- !u!114 &651984859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,8 +1648,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catalogue: {fileID: 1207409700}
   Reset: {fileID: 1101527519}
-  TestStarted: 0
+  text: {fileID: 0}
   switchnbr: 0
+  TestStarted: 0
   activateCatalog: 0
   Help: {fileID: 1185794447}
   controller: {fileID: 1932705677}

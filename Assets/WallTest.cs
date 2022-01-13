@@ -47,6 +47,7 @@ public class WallTest : MonoBehaviour
     private Vector3 n_pos;  //position de placement arrondie à l'une de celles possible
 
     public Text UIwallmode;    //texte indiquant au joueur si le mode mur est activé
+    public GameObject NotUIWallMode;
 
     // Start is called before the first frame update
 
@@ -59,6 +60,7 @@ public class WallTest : MonoBehaviour
     //gère les inputs relatifs au mode mur
     void Update()
     {
+        NotUIWallMode.SetActive(wallmode);
         RaycastHit hit;
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
