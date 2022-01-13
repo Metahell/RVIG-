@@ -50,7 +50,6 @@ public class RightHand : MonoBehaviour
                 if (bientot)
                 {
                     lefthand.GetComponent<LeftHand>().TestStarted = false;
-                    text.text = "finiito";
                 }
                 est_tenu = false;
                 Rigidbody rigi = meuble.GetComponent<Rigidbody>();

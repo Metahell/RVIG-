@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class LeftHand : MonoBehaviour
 {
@@ -10,10 +11,10 @@ public class LeftHand : MonoBehaviour
     [SerializeField]
     private GameObject Reset;    //Bouton reset qui apparaît ou disparait selon l'input du joueur (aide affichée ou non) 
 
+    public Text text;   //texte de log pour le debug
+    public int switchnbr = 0;
     private float Testtimer = 0.0F;
     public bool TestStarted = false;
-    private float FinalValue;
-    public int switchnbr = 0;
     public bool activateCatalog=false;
     [SerializeField]
     private Canvas Help;    //Affichage d'aide qui apparaît ou disparait selon l'input du joueur (bouton reset affichée ou non) 
@@ -51,6 +52,15 @@ public class LeftHand : MonoBehaviour
     void Update()
     {
         if(TestStarted) Testtimer += Time.deltaTime;
+        if(!TestStarted && Testtimer != 0)
+        {
+            StreamWriter writer = new StreamWriter("./result.txt", true);
+            writer.WriteLine(switchnbr+" , "+Testtimer);
+            writer.Close();
+            StreamReader reader = new StreamReader("./result.txt");
+            text.text = reader.ReadToEnd();
+            reader.Close();
+        }
         if (!WallTest.wallmode){
             if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))   //affchage catalogue
             {
@@ -68,10 +78,6 @@ public class LeftHand : MonoBehaviour
             if (Testtimer==0 && !TestStarted)
             {
                 TestStarted = true;
-            }
-            else
-            {
-                Testtimer = FinalValue;
             }
             /*controller.enabled = false;
             off = true;
