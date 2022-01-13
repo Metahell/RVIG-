@@ -5,11 +5,18 @@ using UnityEngine.UI;
 public class RightHand : MonoBehaviour
 {
     public GameObject[] meubles;    //liste des meubles disponibles
+    public Transform TTable;
+    public Transform TChaise;
+    public Transform TArmoire;
+    public Transform TCommode;
+    public Transform TPlanteHaute;
+    public Transform TPlanteLarge;
 
-
+    private bool bientot = false;
+    public GameObject lefthand;
     private GameObject meuble;    //meuble tenu par le joueur
 
-    private bool est_tenu;    //booléen déterminant si le joueur tient un meuble
+    public bool est_tenu;    //booléen déterminant si le joueur tient un meuble
 
     public Text text;   //texte de log pour le debug
 
@@ -40,6 +47,10 @@ public class RightHand : MonoBehaviour
         {
             if (est_tenu && meuble.GetComponent<Meuble>().can_place)    //pose le meuble
             {
+                if (bientot)
+                {
+                    lefthand.GetComponent<LeftHand>().TestStarted = false;
+                }
                 est_tenu = false;
                 Rigidbody rigi = meuble.GetComponent<Rigidbody>();
 
@@ -77,6 +88,7 @@ public class RightHand : MonoBehaviour
                             rigi.isKinematic = true;
                             rigi.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                             meuble.transform.parent = transform;
+                            text.text = meuble.name;
                             est_tenu = true;
                             new_meuble = true;
                             if (meuble.GetComponent<Meuble>().mural)    //empèche les Raycast de prendre en compte le meuble s'il est destiné à sa placer sur un mur
@@ -193,6 +205,59 @@ public class RightHand : MonoBehaviour
             if (!meuble.GetComponent<Meuble>().mural)   //tourne le meuble conformément au mouvement du joystick droit, sauf si le meuble est mural
             {
                 meuble.transform.Rotate(0, rotation, 0);
+            }
+            switch (meuble.name)
+            {
+                case "Armoire(Clone)":
+                    if (Vector3.Distance(meuble.transform.position, TArmoire.position) < 0.1f)
+                    {
+                        meuble.transform.position = TArmoire.position;
+                        meuble.transform.rotation = TArmoire.rotation;
+                    }
+                    break;
+                case "OfficeChair_01_snaps001(Clone)":
+                    if (Vector3.Distance(meuble.transform.position, TChaise.position) < 0.1f)
+                    {
+                        meuble.transform.position = TChaise.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
+                        meuble.transform.rotation = TChaise.rotation;
+                    }
+                    break;
+                case "Cabinet_02_snaps001(Clone)":
+                    if (Vector3.Distance(meuble.transform.position, TCommode.position) < 0.1f)
+                    {
+                        meuble.transform.position = TCommode.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
+                        meuble.transform.rotation = TCommode.rotation;
+                    }
+                    break;
+                case "PotPlant_01_snaps001(Clone)":
+                    if (Vector3.Distance(meuble.transform.position, TPlanteHaute.position) < 0.1f)
+                    {
+                        meuble.transform.position = TPlanteHaute.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
+                        meuble.transform.rotation = TPlanteHaute.rotation;
+                        bientot = true;
+                    }
+                    break;
+                case "PotPlant_02_snaps001(Clone)":
+                    if (Vector3.Distance(meuble.transform.position, TPlanteLarge.position) < 0.1f)
+                    {
+                        meuble.transform.position = TPlanteLarge.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
+                        meuble.transform.rotation = TPlanteLarge.rotation;
+                    }
+                    break;
+                case "ComputerDesk_01_snaps001(Clone)":
+                    if (Vector3.Distance(meuble.transform.position, TTable.position) < 0.1f)
+                    {
+                        meuble.transform.position = TTable.position;
+                        meuble.transform.position += new Vector3(0, 0.01f, 0);
+                        meuble.transform.rotation = TTable.rotation;
+                    }
+                    break;
+                default:
+                    bientot = false; break;
             }
             if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger) || Input.GetMouseButtonDown(1))  //supprime le meuble
             {

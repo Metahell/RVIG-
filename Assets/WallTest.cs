@@ -9,7 +9,7 @@ public class WallTest : MonoBehaviour
 
     private bool change = false;    //utilisé lors du changement du type de mur
    
-    private bool wallmode = false;  //définit si le mode mur est activé ou non
+    public static bool wallmode = false;  //définit si le mode mur est activé ou non
 
     //indices utilisés dans les listes de murs/murs indicateurs
     private int i = 0;
@@ -22,6 +22,9 @@ public class WallTest : MonoBehaviour
     private GameObject[] ListIndic;
     [SerializeField]
     private RightHand righthand;
+
+    [SerializeField]
+    private LeftHand lefthand;
 
     //Mur et mur indicateur actuels
     [SerializeField]
@@ -44,6 +47,7 @@ public class WallTest : MonoBehaviour
     private Vector3 n_pos;  //position de placement arrondie à l'une de celles possible
 
     public Text UIwallmode;    //texte indiquant au joueur si le mode mur est activé
+    public GameObject NotUIWallMode;
 
     // Start is called before the first frame update
 
@@ -56,10 +60,16 @@ public class WallTest : MonoBehaviour
     //gère les inputs relatifs au mode mur
     void Update()
     {
+        NotUIWallMode.SetActive(wallmode);
         RaycastHit hit;
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
+            lefthand.GetComponent<LeftHand>().switchnbr++;
             wallmode = !wallmode;
+            if(!wallmode && righthand.est_tenu)
+            {
+                righthand.est_tenu = false;
+            }
             righthand.enabled = !wallmode;
             UIwallmode.enabled = wallmode;
         }
